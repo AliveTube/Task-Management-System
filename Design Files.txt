@@ -1,0 +1,5 @@
+Design in Figma:
+https://www.figma.com/design/PFKDcQj1VR4MUtIo9UROMK/Task-Manager?node-id=0-1&t=5iiUnR2PaEoothpj-1
+
+Page Map in Figma:
+https://www.figma.com/board/tZzM204ELHqe8x8FZydh2N/Task-Mangment-System-Map?node-id=0-1&t=r6vsgvP20Lzubt7R-1
