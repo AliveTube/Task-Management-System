@@ -1,12 +1,13 @@
 import './App.css'
-import AboutUs from './components/About Us/AboutUs';
-import Footer from './Components/Footer/Footer'
+import AboutUs from './Components/About Us/AboutUs';
+import Footer from './Components/Footer/Footer';
+import NavBar from './Components/NavBar/NavBar';
 
 function App() {
 
   return (
     <>
-
+      
     </>
   )
 }

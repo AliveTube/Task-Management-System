@@ -1,0 +1,66 @@
+.NavBar{
+    padding: 10px;
+    background-color: #F6F6F6;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.Logo{
+    margin: 0px;
+    color: #4D4D4D;
+}
+
+.SignedOutBtns{
+    display: flex;
+    flex-grow: 5;
+    justify-content: end;
+    align-items: center;
+}
+
+.SignedOutBtns a{
+    margin: 0px 30px;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+.SignedOutBtns button{
+    padding: 15px 30px;
+    margin: 0px 0px 0px 10px;
+}
+
+.Register{
+    background-color: #4CAF4F;
+    color: #F6F6F6;
+    border-radius: 4px;
+    font-size: medium;
+    border: 0px;
+}
+
+.Login{
+    background-color: #F6F6F6;
+    border-color: #4CAF4F;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    color: #4CAF4F;
+}
+
+.Register:hover{
+    background-color: #1d611f;
+    color: #F6F6F6;
+    border-radius: 4px;
+    font-size: medium;
+    border: 0px;
+}
+
+.Login:hover{
+    background-color: #4CAF4F;
+    border-color: #4CAF4F;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    color: #F6F6F6;
+}
+
+
