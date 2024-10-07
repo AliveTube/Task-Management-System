@@ -63,4 +63,30 @@
     color: #F6F6F6;
 }
 
+.SignedInBtns{
+    display: flex;
+    flex-grow: 5;
+    justify-content: end;
+    align-items: center;
+}
+
+.Profile{
+    padding: 20px;
+    background-color: #4CAF4F;
+    border-radius: 100%;
+    width: 20px;
+    max-width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SignedInBtns a{
+    padding: 0px;
+    border-radius: 100%;
+    color: #F6F6F6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 
