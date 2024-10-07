@@ -1,7 +1,7 @@
 import NavBarCSS from './NavBar.module.css'
 
 export default function NavBar(){
-    let IS_SIGNED_IN = false; //TO BE CHANGED
+    const IS_SIGNED_IN = false; //TO BE CHANGED
     let navBarBtns; //to chnage when the user is signed in
 
     let dummyUser = {
