@@ -2,7 +2,7 @@ import FirstSection from './FirstSection';
 import SecondSection from './SecondSection';
 import ThirdSection from './ThirdSection';
 import ForthSection from './ForthSection';
-import LandingCSS from './Landing.module.css'
+import LastSection from './LastSection';
 
 
 
@@ -16,6 +16,7 @@ export default function Landing(){
             <SecondSection></SecondSection>
             <ThirdSection></ThirdSection>
             <ForthSection></ForthSection>
+            <LastSection></LastSection>
         </>
     )
 }
