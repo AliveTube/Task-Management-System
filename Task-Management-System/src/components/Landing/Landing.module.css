@@ -96,3 +96,26 @@
     font-size: medium;
     border: 0px;
 }
+
+.ForthSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ForthSection h2{
+    font-size: 40px;
+}
+
+.Cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.Card{
+    margin: 0px 10px;
+}
+
