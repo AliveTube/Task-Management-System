@@ -1,0 +1,98 @@
+.FirstSection{
+    height: 100vh;
+    background-color: #F5F7FA;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.FirstSectText{
+    font-size: 60px;
+    font-weight: bold;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Img1{
+    max-width: 30%;
+}
+
+.SecondSection{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+.SecondSectionText1{
+    font-size: 40px;
+    max-width: 35%;
+    text-align: center;
+    font-weight:500;
+}
+
+.SecondSectionText2{
+    display: flex;
+    font-size: large;
+    margin-top: 90px;
+    color: #4D4D4D;
+}
+
+.SecondSectionText2 h3{
+    margin: 0px 70px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.ThirdSection{
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img2{
+    width: 30%;
+}
+
+.ThirdSecText{
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* flex-shrink: 5; */
+
+    max-width: 40%;
+}
+
+.ThirdSecText p{
+    /* max-width: 40%; */
+    font-weight:300;
+}
+
+.ThirdSecText h2{
+    /* max-width: 40%; */
+    font-size: 40px;
+}
+
+.ThirdSecText button{
+    background-color: #4CAF4F;
+    color: #F6F6F6;
+    border-radius: 4px;
+    font-size: medium;
+    border: 0px;
+    width: 150px;
+    height: 50px;
+    max-width: 150px;
+    max-height: 50px;
+}
+
+.ThirdSecText button:hover{
+    background-color: #1d611f;
+    color: #F6F6F6;
+    border-radius: 4px;
+    font-size: medium;
+    border: 0px;
+}

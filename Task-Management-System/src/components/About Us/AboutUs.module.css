@@ -1,0 +1,29 @@
+.container{
+    background-color: #F5F7FA;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.container h1{
+    width: 50%;
+    font-size: 80px;
+}
+.container div{
+    color: #4D4D4D;
+}
+.container span{
+    color: #4CAF4F;
+}
+.container img{
+    width: 500px;
+    height: 500px;
+}
+
+.article{
+    color: #4D4D4D;
+    font-size: 40px;
+    padding: 10px 120px;
+    font-weight: 600;
+}
