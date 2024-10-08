@@ -1,0 +1,51 @@
+.FirstSection{
+    height: 100vh;
+    background-color: #F5F7FA;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.FirstSectText{
+    font-size: 60px;
+    font-weight: bold;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Img1{
+    max-width: 30%;
+}
+
+.SecondSection{
+    /* background-color: aquamarine; */
+    /* height: 50vh; */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+.SecondSectionText1{
+    font-size: 40px;
+    max-width: 35%;
+    text-align: center;
+    font-weight:500;
+}
+
+.SecondSectionText2{
+    display: flex;
+    font-size: large;
+    margin-top: 90px;
+    color: #4D4D4D;
+}
+
+.SecondSectionText2 h3{
+    margin: 0px 70px;
+    max-width: 200px;
+    text-align: center;
+}
+
