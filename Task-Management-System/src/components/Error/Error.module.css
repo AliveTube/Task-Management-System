@@ -1,0 +1,36 @@
+.errorContainer {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #f5f7fa;
+}
+
+.errorCode {
+    font-size: 150px;
+    color: #4CAF50;
+    margin: 0;
+}
+
+.errorMessage {
+    font-size: 40px;
+    color: #333;
+}
+
+.errorDescription {
+    font-size: 18px;
+    color: #777;
+    margin: 20px 0;
+}
+
+.backHome {
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.backHome:hover {
+    background-color: #45a049;
+}
