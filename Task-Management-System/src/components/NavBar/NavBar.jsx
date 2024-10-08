@@ -1,4 +1,5 @@
 import NavBarCSS from './NavBar.module.css'
+import { Link } from 'react-router-dom'
 
 export default function NavBar(){
     const IS_SIGNED_IN = false; //TO BE CHANGED
@@ -20,7 +21,7 @@ export default function NavBar(){
     }
     else{
         navBarBtns = <div className={NavBarCSS.SignedOutBtns}>
-                            <a href="">About Us</a>
+                            <Link to = "/about">About Us</Link>
                             <button href="" className={NavBarCSS.Register}>Register Now</button>
                             <button href="" className={NavBarCSS.Login}>Login</button>
                         </div>;   
@@ -32,7 +33,7 @@ export default function NavBar(){
     return (
         <>
             <div className={NavBarCSS.NavBar}>
-                <h3 className={NavBarCSS.Logo}>Task Manager</h3>
+                <Link to='/'><h3 className={NavBarCSS.Logo}>Task Manager</h3></Link>
                 {navBarBtns}
             </div>
             
