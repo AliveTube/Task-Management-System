@@ -8,7 +8,6 @@ export default function Landing(){
 
     return(
         <>
-            <NavBar></NavBar> {/*To be removed when the routing is added*/}
             <FirstSection></FirstSection>
             <SecondSection></SecondSection>
         </>
