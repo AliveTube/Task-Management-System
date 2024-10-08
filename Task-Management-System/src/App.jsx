@@ -1,10 +1,10 @@
 import './App.css'
-import AboutUs from './Components/About Us/AboutUs';
-import Footer from './Components/Footer/Footer';
-import NavBar from './Components/NavBar/NavBar';
-import Landing from './Components/Landing/Landing';
-function App() {
+import AboutUs from './components/About Us/AboutUs';
+import Footer from './components/Footer/Footer';
+import NavBar from './components/NavBar/NavBar';
+import Landing from './components/Landing/Landing';
 
+function App() {
   return (
     <>
       <Landing></Landing>
