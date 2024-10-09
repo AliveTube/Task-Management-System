@@ -1,38 +1,33 @@
-import RegisterCSS from './Register.module.css'
+import { useEffect, useRef } from 'react';
+import { setRegisterData } from '../../ReduxSlices/RegisterSlice';
+import RegisterContent from './RegisterContent';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function RegisterPage() {
-    const handleRegisterSubmit= function(e){
-        console.log("ss");
+
+    const dispatch = useDispatch();
+    const RegisterData = useSelector((state) => state.RegisterData);
+    let onChangeData = useRef({});
+
+    function handleRegisterInputChange(event) {
+        onChangeData.current = { ...onChangeData.current, [event.target.name]: event.target.value }
     }
 
+    function handleRegisterSubmit(event) {
+        event.preventDefault();
+        event.target.RegisterButton.blur();
+        dispatch(setRegisterData(onChangeData.current));
+    }
+
+    useEffect(() => {
+        if (RegisterData) {
+            console.log(RegisterData);
+        }
+    }, [RegisterData])
+
     return <>
-        <div className={RegisterCSS.registerPageContainer}>
-            <div className={RegisterCSS.sideBar}></div>
-            <div className={RegisterCSS.Container}>
-
-                <form id='registerForm' className={RegisterCSS.registerForm}>
-                    <h2 className={RegisterCSS.formHeader}>Register</h2>
-
-                    <label htmlFor="email" className={RegisterCSS.label}>Email</label>
-                    <input type="email" placeholder="user@example.com" id="email" name="email" className={RegisterCSS.input} />
-
-                    <label htmlFor="userName" className={RegisterCSS.label}>User Name</label>
-                    <input type="text" placeholder="username" id="userName" name="userName" className={RegisterCSS.input} />
-                    <div className={RegisterCSS.passParentContainer}>
-                        <div className={RegisterCSS.passwordContainer}>
-                            <label htmlFor="password" className={RegisterCSS.label}>Password</label>
-                            <input type="password" placeholder="Password" id="password" name="password" className={RegisterCSS.input} />
-                        </div>
-                        <div className={RegisterCSS.confirmPassContainer}>
-                            <label htmlFor="confirmPass" className={RegisterCSS.label}>Confirm Password</label>
-                            <input type="confirmPass" placeholder="Confirm Password" id="confirmPass" name="confirmPass" className={RegisterCSS.input} />
-                        </div>
-                    </div>
-                    <input type="submit" id="RegisterButton" className={RegisterCSS.registerButton} value="REGISTER" onClick={handleRegisterSubmit()}/>
-                    <div className={RegisterCSS.navToSignIn}>Already Have an Account?</div>
-                </form>
-            </div>
-        </div>
-
+        <RegisterContent
+            handleRegisterSubmit={handleRegisterSubmit} handleRegisterInputChange={handleRegisterInputChange}>
+        </RegisterContent>
     </>
 }
