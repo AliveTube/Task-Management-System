@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Tasks from './Tasks.module.css'; // Import CSS module as "Tasks"
+import Tasks from './Tasks.module.css'; // Import the CSS file
 
 const TaskForm = () => {
     const [task, setTask] = useState({
