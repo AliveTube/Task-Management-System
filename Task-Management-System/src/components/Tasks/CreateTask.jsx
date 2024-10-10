@@ -38,10 +38,10 @@ const TaskForm = () => {
     };
 
     return (
-        <div className="task-form">
+        <div className={Tasks['task-form']}>
             <h2>Create a New Task</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Title</label>
                     <input
                         type="text"
@@ -51,7 +51,7 @@ const TaskForm = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Description</label>
                     <textarea
                         name="description"
@@ -60,7 +60,7 @@ const TaskForm = () => {
                         required
                     ></textarea>
                 </div>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Start Date</label>
                     <input
                         type="date"
@@ -69,7 +69,7 @@ const TaskForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Deadline</label>
                     <input
                         type="date"
@@ -78,7 +78,7 @@ const TaskForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Priority</label>
                     <select
                         name="priority"
@@ -90,7 +90,7 @@ const TaskForm = () => {
                         <option value="High">High</option>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className={Tasks['form-group']}>
                     <label>Status</label>
                     <select
                         name="status"
@@ -102,7 +102,7 @@ const TaskForm = () => {
                         <option value="Done">Done</option>
                     </select>
                 </div>
-                <button type="submit">Create Task</button>
+                <button type="submit" className={Tasks['submit-button']}>Create Task</button>
             </form>
         </div>
     );
