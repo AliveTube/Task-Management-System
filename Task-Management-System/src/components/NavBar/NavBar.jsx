@@ -34,7 +34,7 @@ export default function NavBar(){
     return (
         <>
             <div className={NavBarCSS.NavBar}>
-                <h3 className={NavBarCSS.Logo}>Task Manager</h3>
+                <Link to='/' className={NavBarCSS.Logo}>Task Manager</Link>
                 {navBarBtns}
             </div>
             
