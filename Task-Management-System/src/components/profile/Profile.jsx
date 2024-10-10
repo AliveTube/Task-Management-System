@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Profile.css';
+import Profile from './Profile.module.css'; // Import CSS module as "Profile"
 
-const Profile = ({ userId }) => {
+const ProfileComponent = ({ userId }) => {
     const [profile, setProfile] = useState({
         name: '',
         email: '',
@@ -55,34 +54,34 @@ const Profile = ({ userId }) => {
             });
     };
 
-    const altText = profile.name ? profile.name.charAt(0) : 'Pp'; // Use the first letter of the name or 'P' as default
+    const altText = profile.name ? profile.name.charAt(0) : 'P'; // Use the first letter of the name or 'P' as default
 
     return (
-        <div className="profile-container">
+        <div className={Profile['profile-container']}>
             {loading && <p>Loading...</p>}
-            {error && <p className="error-message">{error}</p>}
-            {success && <p className="success-message">{success}</p>}
+            {error && <p className={Profile['error-message']}>{error}</p>}
+            {success && <p className={Profile['success-message']}>{success}</p>}
 
-            <h1 className="profile-header">{profile.name || 'Your Profile'}</h1>
-            <p className="profile-info">Email: {profile.email || 'No email available'}</p>
-            <p className="profile-info">Phone: {profile.phone || 'No phone number available'}</p>
+            <h1 className={Profile['profile-header']}>{profile.name || 'Your Profile'}</h1>
+            <p className={Profile['profile-info']}>Email: {profile.email || 'No email available'}</p>
+            <p className={Profile['profile-info']}>Phone: {profile.phone || 'No phone number available'}</p>
 
             {profile.profilePicture ? (
                 <img 
                     src={profile.profilePicture} 
                     alt={altText} 
-                    className="profile-picture" 
+                    className={Profile['profile-picture']} 
                 />
             ) : (
-                <div className="profile-picture-placeholder">
+                <div className={Profile['profile-picture-placeholder']}>
                     {altText}
                 </div>
             )}
 
-            <div className="edit-profile-container">
+            <div className={Profile['edit-profile-container']}>
                 <h2>Edit Profile</h2>
                 <form onSubmit={(e) => { e.preventDefault(); updateProfile(); }}>
-                    <div className="form-group">
+                    <div className={Profile['form-group']}>
                         <label htmlFor="name">Name</label>
                         <input
                             type="text"
@@ -90,12 +89,12 @@ const Profile = ({ userId }) => {
                             id="name"
                             placeholder="Name"
                             value={profile.name}
-                            className="edit-profile-input"
+                            className={Profile['edit-profile-input']}
                             onChange={handleInputChange}
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className={Profile['form-group']}>
                         <label htmlFor="email">Email</label>
                         <input
                             type="email"
@@ -103,12 +102,12 @@ const Profile = ({ userId }) => {
                             id="email"
                             placeholder="Email"
                             value={profile.email}
-                            className="edit-profile-input"
+                            className={Profile['edit-profile-input']}
                             onChange={handleInputChange}
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className={Profile['form-group']}>
                         <label htmlFor="phone">Phone</label>
                         <input
                             type="tel"
@@ -116,22 +115,22 @@ const Profile = ({ userId }) => {
                             id="phone"
                             placeholder="Phone"
                             value={profile.phone}
-                            className="edit-profile-input"
+                            className={Profile['edit-profile-input']}
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className={Profile['form-group']}>
                         <label htmlFor="bio">Bio</label>
                         <textarea
                             name="bio"
                             id="bio"
                             placeholder="Bio"
                             value={profile.bio}
-                            className="edit-profile-textarea"
+                            className={Profile['edit-profile-textarea']}
                             onChange={handleInputChange}
                         ></textarea>
                     </div>
-                    <button type="submit" disabled={loading}>
+                    <button type="submit" className={Profile['submit-button']} disabled={loading}>
                         {loading ? 'Updating...' : 'Update Profile'}
                     </button>
                 </form>
@@ -140,4 +139,4 @@ const Profile = ({ userId }) => {
     );
 };
 
-export default Profile;
+export default ProfileComponent;
