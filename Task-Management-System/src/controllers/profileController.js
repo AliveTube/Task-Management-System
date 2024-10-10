@@ -15,7 +15,7 @@ exports.getUserProfile= async(req,res)=>{
         res.status(500).json({message: 'server error'});
     }
 };
-
+ 
 exports.updateUserProfile =async (req,res)=>{
     const userId=req.param.id;
     const{name, email,phone, bio, profilePicture}=req.body;

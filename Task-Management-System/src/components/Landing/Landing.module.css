@@ -72,19 +72,21 @@
     font-size: 40px;
 }
 
-.ThirdSecText button{
+.ThirdSecText p{
+    margin-bottom: 2rem;
+}
+
+.LearnMore{
     background-color: #4CAF4F;
     color: #F6F6F6;
     border-radius: 4px;
     font-size: medium;
     border: 0px;
-    width: 150px;
-    height: 50px;
-    max-width: 150px;
-    max-height: 50px;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
 }
 
-.ThirdSecText button:hover{
+.LearnMore:hover{
     background-color: #1d611f;
     color: #F6F6F6;
     border-radius: 4px;
