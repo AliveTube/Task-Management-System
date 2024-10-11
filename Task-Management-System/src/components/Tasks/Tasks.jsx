@@ -15,7 +15,7 @@ const Tasks = () => {
   return (
     <>
       <div className = {styles.container}>
-        <Aside />
+        {/* <Aside /> */}
         <div className = {styles.tasksContainer}>
           <Main />
           <CompletedTasks />
