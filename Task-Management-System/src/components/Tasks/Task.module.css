@@ -1,0 +1,38 @@
+/* Styling for the task list item */
+.item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-size: 30px;
+    color: #263238;
+}
+
+.checkbox {
+    border-radius: 30px;
+    margin-right: 15px;
+    font-size: 30px;
+}
+
+.text {
+    flex-grow: 1;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+}
+
+.priority {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-right: 15px;
+}
+
+.date {
+    font-size: 22px;
+    font-weight: 700;
+    color: #7f8c8d;
+}

@@ -7,7 +7,6 @@ import Landing from './components/Landing/Landing';
 import Profile from './components/profile/profile';
 import { Outlet } from 'react-router-dom';
 
-
 function App() {
   return (
     <>

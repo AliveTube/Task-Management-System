@@ -37,7 +37,7 @@ export default function RegisterContent({ handleRegisterSubmit, handleRegisterIn
                     </div>
 
                     <input type="submit" id="RegisterButton" className={RegisterCSS.registerButton} value="REGISTER" />
-                    <Link to={'/'} className={RegisterCSS.navToSignIn}>Already Have an Account?</Link>
+                    <Link to={'/login'} className={RegisterCSS.navToSignIn}>Already Have an Account?</Link>
                 </form>
             </div>
         </div>
