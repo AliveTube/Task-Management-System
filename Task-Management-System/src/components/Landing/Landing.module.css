@@ -70,6 +70,9 @@
 .ThirdSecText h2{
     /* max-width: 40%; */
     font-size: 40px;
+    color:#4CAF4F;
+    text-align: start;
+    font-weight: 600;
 }
 
 .ThirdSecText p{
@@ -82,8 +85,10 @@
     border-radius: 4px;
     font-size: medium;
     border: 0px;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 0rem;
     text-decoration: none;
+    width: 9rem;
+    /* max-width: 3rem; */
 }
 
 .LearnMore:hover{
@@ -103,6 +108,8 @@
 
 .ForthSection h2{
     font-size: 40px;
+    color:#4CAF4F;
+    font-weight: 600;
 }
 
 .Cards{
@@ -140,4 +147,6 @@
 .LastSecText h2{
     /* max-width: 40%; */
     font-size: 40px;
+    color: #4D4D4D;
+    margin-bottom: 2rem;
 }
