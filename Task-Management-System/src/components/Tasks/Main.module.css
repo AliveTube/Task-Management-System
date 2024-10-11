@@ -9,42 +9,56 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0px;
 }
 .buttonsContainer{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.button{
-    margin-left: 10px;
+
+.buttonsContainer button{
     background-color: #4CAF4F;
-    color: white;
     border: #449e47 solid 1px;
     border-radius: 8px;
     padding: 5px;
-    width: 130px;
+    width: 100px;
     margin-top: 5px;
+    margin-left: 10px;
     font-weight: bold;
 }
 
-.buttonsContainer .button:hover{
+
+.buttonsContainer button:hover{
     background-color: #45a049;
 }
 
-.buttonsContainer .button:active{
+.buttonsContainer button:active{
     background-color: #1d7e22;
 }
-
 .filter{
-    border: 0;
-    background-color: white;
-    color: #4CAF4F;
-    font-size: 27px;
+    padding: 10px 0px;
 }
-.buttonsContainer .filter:hover{
-    color: #45a049;
+
+/* Dropdown menu styling */
+.dropdown {
+    position: absolute;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1;
 }
-.buttonsContainer .filter:active{
-    color: #1d7e22;
+
+.dropdown button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+.dropdown button:hover {
+    background-color: #f1f1f1;
 }
