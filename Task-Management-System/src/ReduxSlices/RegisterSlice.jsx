@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = {email:'hh',userName:'',password:'',confirmPass:''};
+let initialState = {email:'',userName:'',password:'',confirmPass:''};
 const RegisterSlice = createSlice({
     name:'RegisterData',
     initialState,
