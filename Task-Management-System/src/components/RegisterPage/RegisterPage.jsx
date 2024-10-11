@@ -11,6 +11,22 @@ export default function RegisterPage() {
 
     function handleRegisterInputChange(event) {
         onChangeData.current = { ...onChangeData.current, [event.target.name]: event.target.value }
+        // console.log(onChangeData.current[event.target.name]);
+        // console.log(event.target.name);
+        switch (event.target.name) {
+            case "email":
+                console.log("this is email")
+                if (!event.target.value.length) {
+                    console.log("this is empty");
+                    console.log(event.target.className);
+                }
+                break;
+            case "password":
+                console.log("this is password")
+                break;
+            default:
+                break;
+        }
     }
 
     function handleRegisterSubmit(event) {
@@ -20,7 +36,7 @@ export default function RegisterPage() {
     }
 
     useEffect(() => {
-        if (RegisterData) {
+        if (RegisterData.email.length) {
             console.log(RegisterData);
         }
     }, [RegisterData])
