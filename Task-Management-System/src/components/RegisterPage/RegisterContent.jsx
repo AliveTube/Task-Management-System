@@ -4,28 +4,12 @@ import { Link } from 'react-router-dom';
 
 export default function RegisterContent({ handleRegisterSubmit, handleRegisterInputChange }) {
 
-    const formElem = useRef();
-    useEffect(() => {
-        if (formElem.current) {
-            formElem.current.addEventListener('submit', function (event) {
-                handleRegisterSubmit(event);
-            });
-        }
-        return () => {
-            if (formElem.current) {
-                formElem.current.removeEventListener('submit', function (event) {
-                    handleRegisterSubmit(event);
-                });
-            }
-        };
-    }, []);
-
-
     return <>
         <div className={RegisterCSS.registerPageContainer}>
             <div className={RegisterCSS.sideBar}></div>
             <div className={RegisterCSS.Container}>
-                <form id='registerForm' className={RegisterCSS.registerForm} ref={formElem}>
+
+                <form id='registerForm' className={RegisterCSS.registerForm} onSubmit={handleRegisterSubmit}>
                     <h2 className={RegisterCSS.formHeader}>Register</h2>
 
                     <label htmlFor="email" className={RegisterCSS.label}>Email</label>
