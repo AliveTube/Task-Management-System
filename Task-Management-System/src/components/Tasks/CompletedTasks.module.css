@@ -1,0 +1,27 @@
+/* Styling for the dropdown */
+.dropdown {
+    margin-top: 20px;
+    border: 2px solid #797979;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #b3b2b2;
+    padding: 10px;
+}
+
+.summary {
+    font-size: 18px;
+    padding: 20px;
+    background-color: #b3b2b2;
+    color: #263238;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+
+
+.completedTasksList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}

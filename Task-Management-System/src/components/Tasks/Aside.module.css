@@ -1,0 +1,17 @@
+.aside{
+    background-color: #EDEFF2;
+    margin-left: 4%;
+    margin: 40px;
+    width: 15%;
+    padding: 40px;
+    height: 70vh;
+    border-radius: 10px;
+    border: 1px solid #c7cfda;
+}
+
+.aside h4{
+    font-size: 20px;
+    font-weight: 600;
+    color: #6B7A99;
+    margin-bottom: 20px;
+}
