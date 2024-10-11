@@ -1,16 +1,17 @@
 import NavBarCSS from './NavBar.module.css'
 import RegisterBtn from './RegisterBtn';
-import { Link, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function NavBar(){
-    const IS_SIGNED_IN = false; //TO BE CHANGED
-    let navBarBtns; //to chnage when the user is signed in
-
     const navigate = useNavigate();
 
     const navigateToLogin = () => {
         navigate('/login');
     }
+
+    const IS_SIGNED_IN = false; //TO BE CHANGED
+    let navBarBtns; //to chnage when the user is signed in
 
     let dummyUser = {
                         uniqueId: 0, 
@@ -30,7 +31,7 @@ export default function NavBar(){
         navBarBtns = <div className={NavBarCSS.SignedOutBtns}>
                             <Link to = "/about">About Us</Link>
                             <RegisterBtn></RegisterBtn>
-                            <button href="" className={NavBarCSS.Login} onClick = {navigateToLogin}>Login</button>
+                            <button className={NavBarCSS.Login} onClick={navigateToLogin}>Login</button>
                         </div>;   
     }
 
