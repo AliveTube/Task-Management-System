@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Tasks from './Tasks.module.css'; // Import the CSS file
+import CreateTask from './CreateTask.module.css'; // Import the CSS file
 
 const TaskForm = () => {
     const [task, setTask] = useState({
@@ -38,10 +38,10 @@ const TaskForm = () => {
     };
 
     return (
-        <div className={Tasks['task-form']}>
+        <div className={CreateTask['task-form']}>
             <h2>Create a New Task</h2>
             <form onSubmit={handleSubmit}>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Title</label>
                     <input
                         type="text"
@@ -51,7 +51,7 @@ const TaskForm = () => {
                         required
                     />
                 </div>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Description</label>
                     <textarea
                         name="description"
@@ -60,7 +60,7 @@ const TaskForm = () => {
                         required
                     ></textarea>
                 </div>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Start Date</label>
                     <input
                         type="date"
@@ -69,7 +69,7 @@ const TaskForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Deadline</label>
                     <input
                         type="date"
@@ -78,7 +78,7 @@ const TaskForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Priority</label>
                     <select
                         name="priority"
@@ -90,7 +90,7 @@ const TaskForm = () => {
                         <option value="High">High</option>
                     </select>
                 </div>
-                <div className={Tasks['form-group']}>
+                <div className={CreateTask['form-group']}>
                     <label>Status</label>
                     <select
                         name="status"
@@ -102,7 +102,7 @@ const TaskForm = () => {
                         <option value="Done">Done</option>
                     </select>
                 </div>
-                <button type="submit" className={Tasks['submit-button']}>Create Task</button>
+                <button type="submit" className={CreateTask['submit-button']}>Create Task</button>
             </form>
         </div>
     );
