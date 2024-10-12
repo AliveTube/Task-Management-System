@@ -34,7 +34,7 @@ app.get('/api/users', async (req, res) => {
     }
 });
 
-app.get('/api/tasks', async (req, res) => {
+app.get('/api/tasks/', async (req, res) => {
     try {
         // Establish a new connection for this route
         const connection = await connectDB();
@@ -46,6 +46,28 @@ app.get('/api/tasks', async (req, res) => {
         res.json(rows);
     } catch (err) {
         console.error('Error fetching users:', err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+app.get('/api/tasks/:uniqueId', async (req, res) => {
+    try {
+        const { uniqueId } = req.params;
+        console.log('Requested Task ID:', uniqueId);
+
+        const connection = await connectDB();
+        const [rows] = await connection.execute(
+            'SELECT * FROM Tasks WHERE uniqueId = ?',
+            [uniqueId]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+
+        res.json(rows); // Send the task(s) as JSON
+    } catch (err) {
+        console.error('Error fetching task:', err.message);
         res.status(500).send('Server Error');
     }
 });

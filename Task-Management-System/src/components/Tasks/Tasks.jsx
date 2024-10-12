@@ -17,7 +17,7 @@ const Tasks = () => {
       }
     };
     fetchTasks();
-  }, []);
+  }, []);const taskController = require('../controllers/taskController'); // Import task controller if needed
 
   const activeTasks = tasks.filter(task => task.status !== 'Completed');
   const completedTasks = tasks.filter(task => task.status === 'Completed');

@@ -8,7 +8,7 @@ exports.getUserProfile= async(req,res)=>{
         const [rows]= await db.query('SELECT * FROM users where id = ?',[userId]);
         if (rows.length==0){
                 return res.status(404).json({message: 'user not found'});
-        }
+        }                <Route path=":id/tasks" element={<TodoDetail />} />
         res.json(rows[0]);
     } catch (error) {
         console.error('error fetching user profile ', error);
