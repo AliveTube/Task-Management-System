@@ -33,9 +33,17 @@
     font-weight: 600;
 }
 
-.input {
-    margin-bottom: 18px;
+.inputAccepted {
+    margin-bottom: 22px;
     border: #C1C1C1 solid 1px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.inputNotAccepted {
+    margin-bottom: 21px;
+    border: #ff0000 solid 2px;
+    color: #ff0000;
     border-radius: 3px;
     padding: 5px;
 }
@@ -46,6 +54,19 @@
     margin-bottom: 5px;
 }
 
+.messageEnabled{
+    color: red;
+    height: 0px;
+    position: relative;
+    top: -20px;
+    font-size: 0.8rem;
+}
+
+.messageDisabled{ 
+    color: red;
+    display: none;
+}
+
 /* Password and Confirm Password */
 .passParentContainer {
     display: flex;
@@ -54,8 +75,15 @@
     justify-content: center;
 }
 
-.passParentContainer .input {
+.passParentContainer .inputAccepted , .passParentContainer .inputNotAccepted {
     width: 220px;
+}
+
+.passParentContainer .messageEnabled{
+    width: 240px;
+    line-height: 11px;
+    position: relative;
+    top: -17px;
 }
 
 .passwordContainer {
@@ -70,11 +98,11 @@
     flex-direction: column;
 }
 
-.confirmPassContainer .input {
+.confirmPassContainer .inputAccepted , .confirmPassContainer .inputNotAccepted {
     align-self: flex-end;
 }
 
-.confirmPassContainer .label {
+.confirmPassContainer .label, .confirmPassContainer .messageEnabled{
     margin-left: 20px;
 }
 
@@ -85,9 +113,9 @@
     color: white;
     border: #4CAF4F solid 1px;
     border-radius: 3px;
-    padding: 5px;
+    padding: 6px;
     width: 160px;
-    margin-top: 5px;
+    margin-top: 12px;
     font-weight: bold;
 }
 

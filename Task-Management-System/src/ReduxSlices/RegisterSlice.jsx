@@ -1,17 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = {email:'',userName:'',password:'',confirmPass:''};
+let RegisterData = { email: '', userName: '', password: '', confirmPass: '' };
+let isValidInput = { email: 1, userName: 1, password: 1, confirmPass: 1 };
+
 const RegisterSlice = createSlice({
-    name:'RegisterData',
-    initialState,
-    reducers:{
-        setRegisterData : (state,{payload})=>{
-            state.email= payload.email;
-            state.userName= payload.userName;
-            state.password= payload.password;   
-            state.confirmPass= payload.confirmPass;
-        }
+    name: 'RegisterSlice',
+    initialState: { RegisterData: RegisterData, isValidInput: isValidInput },
+    reducers: {
+        setRegisterData: (state, { payload }) => {
+            state.RegisterData.email = payload.email;
+            state.RegisterData.userName = payload.userName;
+            state.RegisterData.password = payload.password;
+            state.RegisterData.confirmPass = payload.confirmPass;
+        },
+        setValidInput: (state, { payload }) => {
+            state.isValidInput[payload.element] = payload.value;
+        },
     },
 })
-export const {setRegisterData} = RegisterSlice.actions;
+
+export const { setRegisterData, setValidInput } = RegisterSlice.actions;
 export const RegisterSliceReducer = RegisterSlice.reducer;
