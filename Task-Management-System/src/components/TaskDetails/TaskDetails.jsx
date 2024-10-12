@@ -1,6 +1,16 @@
 import TDCSS from './taskDetailsCSS.module.css' //TDCSS -> Task Deatails CSS
 import binIcon from '../../Images/Icons/bin.svg'
 import editIcon from '../../Images/Icons/Edit.svg'
+import { useNavigate } from 'react-router-dom';
+
+function choosePriorityClass(priority){
+    if(priority === 'High')
+        return TDCSS.HighPriority;
+    else if(priority === 'Medium')
+        return TDCSS.MedPriority;
+    else
+        return TDCSS.LowPriority;
+}
 
 export default function TaskDetails(){
 
@@ -17,7 +27,11 @@ export default function TaskDetails(){
         toDoListId: 0
     };
 
+    const navegate = useNavigate();
 
+    const navegateToTasks = function(){
+        navegate('/home/tasks');
+    }
 
     return(
         <>
@@ -30,8 +44,10 @@ export default function TaskDetails(){
                         <img src={binIcon} alt="bin" style={{width: '2rem'}}/>
                     </div>
                 </div>
-
                 <h3 className={TDCSS.Deadline}>Due {tempTask.deadline}</h3>
+                <p className={TDCSS.description}>{tempTask.description}</p>
+                <div className={choosePriorityClass(tempTask.priority)}>{tempTask.priority} Priority</div>
+                <button className={TDCSS.button} onClick={navegateToTasks} style={{marginTop: '1rem'}}>Back</button>
             </div>
         </>
     )
