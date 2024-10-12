@@ -45,20 +45,20 @@ const Task = ({ task }) => {
       <>
         <div className={`${styles.item} ${task.status === 'Completed' ? styles.completed : ''}`}
           style={{ borderColor: getRandomColor() }}>
-        <input
-          type="checkbox"
-          className={styles.checkbox}
-          onClick={addToCompleted}
-          defaultChecked={task.status === 'Completed'}
-          />
-        <button onClick={navigateToTaskDetails} className = {styles.listButton}>
-          <li>
-            <span className={styles.text}>{task.title}</span>
-            <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
-            <span className={styles.date}>Due {formattedDate}</span>
-          </li>
-        </button>
-      </div>
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            onClick={addToCompleted}
+            defaultChecked={task.status === 'Completed'}
+            />
+          <button onClick={navigateToTaskDetails} className = {styles.listButton}>
+            <li>
+              <span className={styles.text}>{task.title}</span>
+              <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
+              <span className={styles.date}>Due {formattedDate}</span>
+            </li>
+          </button>
+        </div>
       </>
     )
   );
