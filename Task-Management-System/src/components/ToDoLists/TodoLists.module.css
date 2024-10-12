@@ -1,0 +1,14 @@
+.todolists-container {
+    padding: 20px;
+}
+
+.todolist-item {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 0;
+}
