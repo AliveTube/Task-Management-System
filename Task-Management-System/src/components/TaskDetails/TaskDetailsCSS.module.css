@@ -1,0 +1,86 @@
+.MainContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* align-content: space-between; */
+    /* align-items: center; */
+    padding: 3rem 0rem;
+    margin-right: 40px;
+    width: 100%;
+}
+
+.Header{
+    display: flex;
+    /* justify-content: space-between;  */
+    align-items: center; 
+    width: 100%;
+}
+
+.Title{
+    font-weight: bolder;
+}
+
+.HeaderRight{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.HeaderRight * {
+    margin: 0rem 0.5rem;
+}
+
+
+.button{
+
+    background-color: #4CAF4F;
+    color: #F6F6F6;
+    width:fit-content;
+}
+
+.button:hover{
+    background-color: #1d611f;
+    color: #F6F6F6;
+}
+
+.Deadline{
+    color: #FF0000;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.description{
+    font-size: larger;
+    margin-top: 1rem;
+}
+
+.HighPriority{
+    font-size: larger;
+    background-color: #ECD4D4;
+    color: #AF4C4C;
+    padding: 0.8rem 1.2rem;
+    width:fit-content;
+    font-weight: bolder;
+    border-radius: 0.5rem;
+}
+
+.LowPriority{
+    font-size: larger;
+    background-color: #d4ecd6;
+    color: #4caf51;
+    padding: 0.8rem 1.2rem;
+    width:fit-content;
+    font-weight: bolder;
+    border-radius: 0.5rem;
+}
+
+.MedPriority{
+    font-size: larger;
+    background-color: #ecead4;
+    color: #a5af4c;
+    padding: 0.8rem 1.2rem;
+    width:fit-content;
+    font-weight: bolder;
+    border-radius: 0.5rem;
+}

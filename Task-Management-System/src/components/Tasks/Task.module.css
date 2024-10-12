@@ -36,3 +36,8 @@
     font-weight: 700;
     color: #7f8c8d;
 }
+
+.completed .text{
+    text-decoration: line-through;
+    color: #7f8c8d;
+}

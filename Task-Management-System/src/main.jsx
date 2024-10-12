@@ -8,17 +8,22 @@ import Landing from './components/Landing/Landing'
 import Error from './components/Error/Error'
 import RegisterPage from './components/RegisterPage/RegisterPage.jsx'
 import Login from './components/Login/Login.jsx'
+import Home from './components/Home/Home.jsx'
 import { Provider } from 'react-redux'
 import { store } from './ReduxStore/store.jsx'
 import CreateTask from './components/Tasks/CreateTask.jsx'
 import Tasks from './components/Tasks/Tasks.jsx'
+import TaskDetails from './components/TaskDetails/TaskDetails.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
     {index: true, element: <Landing />},
     {path: 'about', element: <AboutUs />},
-    {path: 'addTask', element: <CreateTask />},
-    {path: 'tasks', element: <Tasks />},
+    {path: 'home', element: <Home/>, children:[
+      {path: 'addTask', element: <CreateTask />},
+      {path: 'tasks', element: <Tasks />},
+      {path: 'taskDetails', element:<TaskDetails/>},
+    ]},
   ]},
   {path:'register', element: <RegisterPage></RegisterPage>},
   {path:'login', element: <Login/>},

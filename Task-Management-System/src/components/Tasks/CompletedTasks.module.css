@@ -6,6 +6,7 @@
     overflow: hidden;
     background-color: #b3b2b2;
     padding: 10px;
+    margin-bottom: 30px;
 }
 
 .summary {
@@ -18,10 +19,8 @@
     font-weight: bold;
 }
 
-
 .completedTasksList {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding: 20px;
     margin-top: 10px;
 }
