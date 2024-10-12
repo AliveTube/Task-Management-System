@@ -34,7 +34,6 @@ exports.createTask = async(req,res)=>{
         }
         res.status(201).json({message: 'Task created successfully', taskId: result.insertId});
     });
-
 };
 
 exports.updateTask = (req, res) => {
@@ -60,7 +59,7 @@ exports.updateTask = (req, res) => {
     });
 
   };
-  
+
   exports.getTasksForTodoList = async (req, res) => {
     const todoListId = req.params.id;
     const sqlQuery = 'SELECT * FROM tasks WHERE todo_list_id = ?';  // Assuming 'todo_list_id' is the foreign key in the 'tasks' table

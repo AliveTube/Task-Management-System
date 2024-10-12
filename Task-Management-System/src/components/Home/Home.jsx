@@ -6,7 +6,7 @@ export default function Home(){
     return(
         <>
             <div style={{display: 'flex'}}>
-                <Aside/>
+                <Aside />
                 <Outlet />
             </div>
         </>

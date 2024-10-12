@@ -97,9 +97,8 @@ const TaskForm = () => {
                         value={task.status}
                         onChange={handleInputChange}
                     >
-                        <option value="To Do">To Do</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Done">Done</option>
+                        <option value="Pending">Pending</option>
+                        <option value="InProgress">In Progress</option>
                     </select>
                 </div>
                 <button type="submit" className={CreateTask['submit-button']}>Create Task</button>

@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     {path: 'home', element: <Home/>, children:[
       {path: 'addTask', element: <CreateTask />},
       {path: 'tasks', element: <Tasks />},
-      {path: 'taskDetails/:uniqueId', element:<TaskDetails/>}
+      {path: 'tasks/:uniqueId', element:<TaskDetails/>}
     ]},
   ]},
   {path:'register', element: <RegisterPage></RegisterPage>},

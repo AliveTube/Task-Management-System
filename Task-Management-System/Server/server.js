@@ -72,26 +72,35 @@ app.get('/api/tasks/:uniqueId', async (req, res) => {
     }
 });
 
-app.post('/api/tasks', async (req, res) => {
-    // const { title, priority, deadline } = req.body;
+app.put('/api/tasks/:uniqueId', async (req, res) => {
+    try {
+        const { uniqueId } = req.params;
+        const { status } = req.body;
 
-    // try {
-    //     // Establish a new connection for this route
-    //     const connection = await connectDB();
+        const connection = await connectDB();
+        const [result] = await connection.execute(
+            'UPDATE Tasks SET status = ? WHERE uniqueId = ?',
+            [status, uniqueId]
+        );
 
-    //     // Execute a SQL query to insert a new task
-    //     const [result] = await connection.execute(
-    //         'INSERT INTO Tasks (title, priority, deadline) VALUES (?, ?, ?)',
-    //         [title, priority, deadline]
-    //     );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
 
-    //     // Send the result as a JSON response
-    //     res.json({ id: result.insertId, title, priority, deadline });
-    // } catch (err) {
-    //     console.error('Error creating task:', err.message);
-    //     res.status(500).send('Server Error');
-    // }
+        const [updatedTask] = await connection.execute(
+            'SELECT * FROM Tasks WHERE uniqueId = ?',
+            [uniqueId]
+        );
+
+        res.status(200).send("Task status updated successfully");
+    }
+    catch (err) {
+        console.error('Error updating task status:', err.message);
+        res.status(500).send('Server Error');
+    }
 });
+
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
