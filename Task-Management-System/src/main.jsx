@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import { store } from './ReduxStore/store.jsx'
 import CreateTask from './components/Tasks/CreateTask.jsx'
 import Tasks from './components/Tasks/Tasks.jsx'
+import TaskDetails from './components/TaskDetails/TaskDetails.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     {path: 'home', element: <Home/>, children:[
       {path: 'addTask', element: <CreateTask />},
       {path: 'tasks', element: <Tasks />},
+      {path: 'taskDetails', element:<TaskDetails/>},
     ]},
   ]},
   {path:'register', element: <RegisterPage></RegisterPage>},

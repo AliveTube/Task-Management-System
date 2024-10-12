@@ -10,7 +10,7 @@ const Main = ({ tasks }) => {
   const [filterType, setFilterType] = useState('');
 
   const navigateToAddTask = () => {
-    navigate('/addTask');
+    navigate('/home/addTask');
   };
 
   const toggleDropdown = () => {
