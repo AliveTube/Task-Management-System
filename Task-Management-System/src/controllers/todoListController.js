@@ -1,11 +1,12 @@
 //TODO specify the actuall used db 
-const mysql = require('mysql2/promise');
+const db = require('../database/*');
 
 
-exports.getAllTodoLists = async(req,res) =>{
-    const sqlQuery="SELECT * FROM todo_lists";
+exports.getAllTodoListsForFolder = async(req,res) =>{
+    const folderId = req.params.folderId;
+    const sqlQuery="SELECT * FROM todo_lists WHERE folder_id = ?";
     try {
-        const [rows] =await db.query(sqlQuery);
+        const [rows] =await db.query(sqlQuery,[folderId]);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Error fetching todo lists :', error);
