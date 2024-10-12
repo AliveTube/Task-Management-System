@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Task.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Task = ({ task }) => {
   const getRandomColor = () => {
@@ -10,6 +11,14 @@ const Task = ({ task }) => {
     }
     return color;
   };
+
+  const navigate = useNavigate();
+
+  const navigateToTaskDetails = () => {
+    console.log(task);
+    task &&
+    navigate(`/home/taskDetails/${task.uniqueId}`);
+  }
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -32,20 +41,26 @@ const Task = ({ task }) => {
 
   return (
     task &&
-    (<li
-      className={`${styles.item} ${task.status === 'Completed' ? styles.completed : ''}`}
-      style={{ borderColor: getRandomColor() }}
-    >
-      <input
-        type="checkbox"
-        className={styles.checkbox}
-        onClick={addToCompleted}
-        defaultChecked={task.status === 'Completed'}
-      />
-      <span className={styles.text}>{task.title}</span>
-      <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
-      <span className={styles.date}>Due {formattedDate}</span>
-    </li>)
+    (
+      <>
+        <div className={`${styles.item} ${task.status === 'Completed' ? styles.completed : ''}`}
+          style={{ borderColor: getRandomColor() }}>
+        <input
+          type="checkbox"
+          className={styles.checkbox}
+          onClick={addToCompleted}
+          defaultChecked={task.status === 'Completed'}
+          />
+        <button onClick={navigateToTaskDetails} className = {styles.listButton}>
+          <li>
+            <span className={styles.text}>{task.title}</span>
+            <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
+            <span className={styles.date}>Due {formattedDate}</span>
+          </li>
+        </button>
+      </div>
+      </>
+    )
   );
 };
 

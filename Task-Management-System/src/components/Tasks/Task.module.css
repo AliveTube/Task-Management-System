@@ -6,9 +6,15 @@
     margin-bottom: 10px;
     border: 2px solid;
     border-radius: 8px;
-    background-color: #f8f9fa;
     font-size: 30px;
     color: #263238;
+    background-color: white ;
+}
+
+.item li{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
 }
 
 .checkbox {
@@ -40,4 +46,19 @@
 .completed .text{
     text-decoration: line-through;
     color: #7f8c8d;
+}
+
+.listButton{
+    background-color: white;
+    color: white;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.listButton:hover {
+    background-color: white;
 }
