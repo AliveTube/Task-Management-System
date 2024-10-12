@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Aside from './Aside';
+import React, { act, useEffect, useState } from 'react';
 import Main from './Main';
 import CompletedTasks from './CompletedTasks';
 import styles from './Tasks.module.css';
@@ -24,13 +23,14 @@ const Tasks = () => {
   const completedTasks = tasks.filter(task => task.status === 'Completed');
 
   return (
-    <div className={styles.container}>
-      <Aside />
-      <div className={styles.tasksContainer}>
-        <Main tasks={activeTasks} />
-        <CompletedTasks tasks={completedTasks} />
+    <>
+      <div className = {styles.container}>
+        <div className = {styles.tasksContainer}>
+          <Main tasks = {activeTasks}/>
+          <CompletedTasks tasks = {completedTasks}/>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

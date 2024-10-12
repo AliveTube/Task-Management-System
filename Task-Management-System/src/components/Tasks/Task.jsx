@@ -28,6 +28,8 @@ const Task = ({ task }) => {
     
   };
 
+  const formattedDate = new Date(task.deadline).toLocaleDateString();
+
   return (
     task &&
     (<li
@@ -42,7 +44,7 @@ const Task = ({ task }) => {
       />
       <span className={styles.text}>{task.title}</span>
       <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
-      <span className={styles.date}>Due {task.deadline}</span>
+      <span className={styles.date}>Due {formattedDate}</span>
     </li>)
   );
 };

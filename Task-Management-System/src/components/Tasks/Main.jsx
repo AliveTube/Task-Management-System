@@ -11,7 +11,7 @@ const Main = ({ tasks }) => {
   const [filterType, setFilterType] = useState('');
 
   const navigateToAddTask = () => {
-    navigate('/addTask');
+    navigate('/home/addTask');
   };
 
   const toggleDropdown = () => {
@@ -20,6 +20,7 @@ const Main = ({ tasks }) => {
 
   const handleFilterChange = (filter) => {
     setFilterType(filter);
+    setShowDropdown(false);
     if (filter === 'date') {
       const sortedTasks = tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
       setTasks([...sortedTasks]);
@@ -31,7 +32,6 @@ const Main = ({ tasks }) => {
       });
       setTasks([...sortedTasks]);
     }
-    setShowDropdown(false);
   };
 
   return (

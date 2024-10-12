@@ -1,0 +1,51 @@
+.MainContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* align-content: space-between; */
+    /* align-items: center; */
+    padding: 3rem 0rem;
+    margin-right: 40px;
+    width: 100%;
+}
+
+.Header{
+    display: flex;
+    /* justify-content: space-between;  */
+    align-items: center; 
+    width: 100%;
+}
+
+.Title{
+    font-weight: bolder;
+}
+
+.HeaderRight{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.HeaderRight * {
+    margin: 0rem 0.5rem;
+}
+
+
+.button{
+
+    background-color: #4CAF4F;
+    color: #F6F6F6;
+    width: 10rem;
+}
+
+.button:hover{
+    background-color: #1d611f;
+    color: #F6F6F6;
+}
+
+.Deadline{
+    color: #FF0000;
+    font-size: larger;
+    font-weight: bold;
+}
