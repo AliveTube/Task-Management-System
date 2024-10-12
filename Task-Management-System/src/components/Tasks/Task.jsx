@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Task.module.css';
 
-const Task = ({ completed = false }) => {
+const Task = ({ task }) => {
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -11,25 +11,39 @@ const Task = ({ completed = false }) => {
     return color;
   };
 
+  const getPriorityColor = (priority) => {
+    switch (priority) {
+      case 'High':
+        return 'red';
+      case 'Medium':
+        return 'blue';
+      case 'Low':
+        return 'green';
+      default:
+        return 'black';
+    }
+  };
+
   const addToCompleted = () => {
-    // Add your completion logic here
+    
   };
 
   return (
-    <li
-      className={`${styles.item} ${completed ? styles.completed : ''}`}
+    task &&
+    (<li
+      className={`${styles.item} ${task.status === 'Completed' ? styles.completed : ''}`}
       style={{ borderColor: getRandomColor() }}
     >
       <input
         type="checkbox"
         className={styles.checkbox}
         onClick={addToCompleted}
-        defaultChecked={completed}
+        defaultChecked={task.status === 'Completed'}
       />
-      <span className={styles.text} style = {{textDecoration: completed ? 'line-through' : 'none' }}>Task 1</span>
-      <span className={styles.priority}> High Priority</span>
-      <span className={styles.date}>Due 2021-10-10</span>
-    </li>
+      <span className={styles.text}>{task.title}</span>
+      <span className={styles.priority} style={{ color: getPriorityColor(task.priority) }}> {task.priority}</span>
+      <span className={styles.date}>Due {task.deadline}</span>
+    </li>)
   );
 };
 
