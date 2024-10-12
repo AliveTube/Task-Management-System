@@ -3,11 +3,12 @@ import axios from 'axios';
 import TodoListStyle from './TodoLists.module.css'; // Import your CSS module
 
 const TodoLists = () =>{
+    const { folderId } = useParams();
     const [todoLists,setTodoLists]= useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(()=>{
-        axios.get('/api/todoLists')
+        axios.get(`/api/todoLists/folder/${folderId}`)
         .then(response =>{
             setTodoLists(response.data);
             setLoading(false);
@@ -26,12 +27,19 @@ const TodoLists = () =>{
             <ul>
                 {todoLists.map((list)=>(
                     <li key={list.id} className={TodoListStyle["todolist-item"]}>
-                     <Link to={`/todo/${list.id}`}></Link>
-                        <h3>{list.title}</h3>
-                        <p>{list.description}</p>
+                   // link to task of the todolist
+                   //TODO hnadle this in the router
+                     <Link to={`/todo-lists/${list.id}/tasks`}>
+                     <h3>{list.title}</h3>
+                     <p>{list.description}</p>
+                     </Link>
                     </li>
                 ))}
             </ul>
+            {/* <Route>
+                <Route path="" element={} />
+            </Route> */}
         </div>
     );
 };
+export default TodoLists;
