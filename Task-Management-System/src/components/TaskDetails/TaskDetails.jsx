@@ -32,9 +32,9 @@ export default function TaskDetails(){
             catch (error) {
                 console.error('Error fetching tasks:', error);
             }
-          };
+        };
         fetchTask();
-    }, [setTask]);
+    }, [uniqueId]);
 
     const navigate = useNavigate();
 

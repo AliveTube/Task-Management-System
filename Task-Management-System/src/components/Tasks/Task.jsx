@@ -48,7 +48,7 @@ const Task = ({ task, toggleTaskStatus }) => {
         <input
           type="checkbox"
           className={styles.checkbox}
-          onChange={handleCheckboxChange} // Handle change event
+          onChange={handleCheckboxChange}
           checked={task.status === 'Completed'}
           key={task.uniqueId}
         />

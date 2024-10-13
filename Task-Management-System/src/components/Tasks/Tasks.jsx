@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Main from './Main';
 import CompletedTasks from './CompletedTasks';
 import styles from './Tasks.module.css';
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/tasks');
-        setTasks(response.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    };
-    fetchTasks();
-  }, []);
+  const { tasks, setTasks } = useOutletContext();
 
   const toggleTaskStatus = async (task) => {
     const updatedStatus = task.status === 'Completed' ? 'InProgress' : 'Completed';
@@ -31,6 +20,7 @@ const Tasks = () => {
       const updatedTasks = tasks.map((t) =>
         t.uniqueId === task.uniqueId ? updatedTask : t
       );
+
       setTasks(updatedTasks);
     } catch (error) {
       console.error('Error updating task status:', error);
