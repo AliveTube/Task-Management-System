@@ -7,6 +7,8 @@ const app = express();
 
 //Add Routes
 const registerRoute = require('./routes/registerRoute');
+const homeRoute = require('./routes/homeRoute')
+const loginRoute = require('./routes/loginRoute');
 
 // Middleware
 app.use(cors());
@@ -18,6 +20,8 @@ connectDB();  // This will connect when the server starts
 
 //use Register Route
 app.use(registerRoute);
+app.use(homeRoute);
+app.use(loginRoute);
 
 // Sample route to verify server is running
 app.get('/', (req, res) => {

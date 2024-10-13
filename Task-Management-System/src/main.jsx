@@ -15,6 +15,7 @@ import CreateTask from './components/CreateTask/CreateTask.jsx'
 import Tasks from './components/Tasks/Tasks.jsx'
 import TaskDetails from './components/TaskDetails/TaskDetails.jsx'
 import Folders from './components/Folders/Folders.jsx'
+import UpdateTask from './components/UpdateTask/UpdateTask.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     {path: 'home', element: <Home/>, children:[
       {index: true, element: <Folders />},
       {path: 'addTask', element: <CreateTask />},
+      {path: 'updateTask', element: <UpdateTask></UpdateTask>},
       {path: 'tasks', element: <Tasks />},
       {path: 'tasks/:uniqueId', element:<TaskDetails/>}
     ]},

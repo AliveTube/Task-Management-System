@@ -1,9 +1,9 @@
 import styles from './FoldersMain.module.css';
-import Task from './Folder';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Folder from './Folder';
 
-const Main = ({ tasks }) => {
+export default function FolderMain({ folders }){
   const navigate = useNavigate();
 
   const navigateToAddTask = () => {
@@ -19,12 +19,10 @@ const Main = ({ tasks }) => {
         </div>
       </div>
       <ul className={styles.ul}>
-        {tasks.map((task) => (
-          <Task key={task.uniqueId} task={task}/>
+        {folders.map((folder) => (
+          <Folder key={folder.uniqueId} folder={folder}/>
         ))}
       </ul>
     </main>
   );
 };
-
-export default Main;
