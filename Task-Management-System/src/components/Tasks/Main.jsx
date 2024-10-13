@@ -5,7 +5,7 @@ import { AiFillFilter } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Main = ({ tasks }) => {
+const Main = ({ tasks, toggleTaskStatus }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [filterType, setFilterType] = useState('');
@@ -52,8 +52,8 @@ const Main = ({ tasks }) => {
         </div>
       </div>
       <ul className={styles.ul}>
-        {tasks.map(task => (
-          <Task key={task.id} task = {task}/>
+        {tasks.map((task) => (
+          <Task key={task.uniqueId} task={task} toggleTaskStatus={toggleTaskStatus} />
         ))}
       </ul>
     </main>
