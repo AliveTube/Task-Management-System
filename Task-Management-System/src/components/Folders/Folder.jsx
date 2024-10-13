@@ -5,7 +5,7 @@ import editIcon from '../../Images/Icons/Edit.svg'
 import { IoFolderOpen } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 
-const Task = ({ task }) => {
+export default function Folder({ folder }) {
   const getRandomColor = () => {
     const colorOptions = [
       "#4CAF4F", "#4CAF97", "#4CAF27",
@@ -21,19 +21,19 @@ const Task = ({ task }) => {
   const navigate = useNavigate();
 
   const navigateToTaskDetails = () => {
-    navigate(`/home/tasks/${task.uniqueId}`);
+    navigate(`/home/tasks/${folder.uniqueId}`);
   };
 
 
   return (
-    task && (
+    folder && (
       <div className={styles.item} style={{ borderColor: chosenColor }}>
         <div alt="bin" style={{ width: '2rem', marginRight: '0.7rem' }}>
           <IoFolderOpen style={{ color: chosenColor, fontSize: '2rem' }} />
         </div>
         <button onClick={navigateToTaskDetails} className={styles.listButton}>
           <li>
-            <span className={styles.text}>{task.title}</span>
+            <span className={styles.text}>{folder.title}</span>
             <img src={editIcon} alt="edit" style={{ width: '2rem' }} />
             <img src={binIcon} alt="bin" style={{ width: '2rem', marginLeft: '1rem' }} />
           </li>
@@ -42,5 +42,3 @@ const Task = ({ task }) => {
     )
   );
 };
-
-export default Task;

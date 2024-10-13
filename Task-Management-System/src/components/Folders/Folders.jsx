@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Folders.module.css';
-import Main from './FoldersMain';
 import axios from 'axios';
+import FolderMain from './FoldersMain';
 
 export default function Folders() {
-    const [tasks, setTasks] = useState([]);
+    const [folders, setFolders] = useState([]);
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVJZCI6MzMsInVzZXJuYW1lIjoiS2FyaW0gSG9zYW0iLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA3JEJzUHpDTS5hMVRCVTNCYmI0WTFPLi4vMDhvdUhqNDZWUURsY3JFVC9nS2N5ZmNKbGtYVjc2IiwicGhvbmVOdW1iZXIiOm51bGwsImlhdCI6MTcyODg1OTg3M30.dajHY3BNumFkpd9BWhxfu50vxyKR4wTQ0u6CQX_jMKQ'
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/tasks');
-                setTasks(response.data);
-            } catch (error) {
-                console.error('Error fetching tasks:', error);
-            }
-        };
-        fetchTasks();
+        axios.get(`http://localhost:3000/api/folders/${token}`)
+            .then(response => {
+                setFolders(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching folders:', error);
+            })
     }, []);
-
-    // const activeTasks = tasks.filter((task) => task.status !== 'Completed');
 
     return (
         <div className={styles.container}>
             <div className={styles.tasksContainer}>
-                <Main tasks={tasks} />
+                <FolderMain folders={folders} />
             </div>
         </div>
     );
