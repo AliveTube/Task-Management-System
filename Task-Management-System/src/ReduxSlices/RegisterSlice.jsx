@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let RegisterData = { email: '', userName: '', password: '', confirmPass: '' };
+let RegisterData = { email: '', username: '', password: '', confirmPass: '' };
 let isValidInput = { email: 1, userName: 1, password: 1, confirmPass: 1 };
 
 const RegisterSlice = createSlice({
@@ -9,7 +9,7 @@ const RegisterSlice = createSlice({
     reducers: {
         setRegisterData: (state, { payload }) => {
             state.RegisterData.email = payload.email;
-            state.RegisterData.userName = payload.userName;
+            state.RegisterData.username = payload.userName;
             state.RegisterData.password = payload.password;
             state.RegisterData.confirmPass = payload.confirmPass;
         },

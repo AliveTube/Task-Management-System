@@ -5,12 +5,19 @@ const connectDB = require('./config/db');  // Import the database connection
 // Initialize Express
 const app = express();
 
+//Add Routes
+const registerRoute = require('./routes/registerRoute');
+
 // Middleware
 app.use(cors());
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 // Connect to the MySQL database
 connectDB();  // This will connect when the server starts
+
+//use Register Route
+app.use(registerRoute);
 
 // Sample route to verify server is running
 app.get('/', (req, res) => {
