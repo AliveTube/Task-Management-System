@@ -1,0 +1,110 @@
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CreateTask from './CreateUpdate.module.css'; // Import the CSS file
+
+//in the case of craete task will be empty 
+//in the case of update task will be the old task that we updating 
+export default function CreateUpdate({handleSubmit,Task = {}}){ 
+
+    const getTodayDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    //if Task is empty we start from Defualt
+    //if Task is not empty we start from Task
+    let newTask = useRef(
+        Object.keys(Task).length === 0 
+        ? {
+            title: '',
+            description: '',
+            priority: 'Low',
+            startDate: getTodayDate(),
+            deadLine: '',
+            status: 'Pending',
+        } 
+        : Task
+    );
+
+    const handleInputChange = (e) => {
+        newTask.current = {...newTask.current,[e.target.name]: e.target.value};
+        console.log(newTask.current);
+    };
+
+    const onSubmit =  (e) => {
+        e.preventDefault();
+        handleSubmit(newTask.current);
+    };
+
+    const navigate = useNavigate();
+
+    const navigateToTasks = () => {
+        navigate('/home/tasks');
+    }
+
+    return(
+        <>
+            <div className={CreateTask['task-form']}>
+                <h2 className={CreateTask['Header']}>{Object.keys(Task).length === 0 ? 'New Task' : 'Update Task'}</h2>
+                <form onSubmit={onSubmit}>
+                    <div className={CreateTask['form-group']}>
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder={newTask.current.title}
+                            // value='s'
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className={CreateTask['form-group']}>
+                        <label>Description</label>
+                        <textarea
+                            name="description"
+                            placeholder={newTask.current.description}
+                            // value={newTask.current.description}
+                            onChange={handleInputChange}
+                            required
+                        ></textarea>
+                    </div>
+                    <div className={CreateTask['Deadline_Priority']}>
+                        <div className={CreateTask['Deadline']}>
+                            <label>Deadline</label>
+                            <input
+                                type="date"
+                                name="deadLine"
+                                // placeholder={newTask.current.deadLine}
+                                // value={newTask.current.deadLine}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className={CreateTask['form-group']}>
+                            <label>Priority</label>
+                            <select
+                                name="priority"
+                                // placeholder={newTask.current.priority}
+                                // value={newTask.current.priority}
+                                onChange={handleInputChange}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className={CreateTask['Btns']}>
+                        <button type="submit" className={CreateTask['submit-button']}>
+                            {Object.keys(Task).length === 0 ? 'Create Task' : 'Update Task'}
+                        </button>
+                        <button className={CreateTask['cancel-button']} onClick={navigateToTasks}>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </>
+    )
+}
