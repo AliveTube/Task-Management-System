@@ -15,7 +15,7 @@ export default function ForthSection(){
                 <div className={LandingCSS.Cards}>
                     <Card Name='Abdelrahman Wael' Image={tempProfile}></Card>
                     <Card Name='Omar Mohamed' Image={tempProfile}></Card>
-                    <Card Name='Kareem Hosam' Image={tempProfile}></Card>
+                    <Card Name='Karim Hosam' Image={tempProfile}></Card>
                     <Card Name='Ahmed Mohamed' Image={tempProfile}></Card>
                     <Card Name='Mostafa Ahmed' Image={tempProfile}></Card>
                     <Card Name='Ziad Hassan' Image={tempProfile}></Card>

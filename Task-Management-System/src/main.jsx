@@ -14,12 +14,14 @@ import { store } from './ReduxStore/store.jsx'
 import CreateTask from './components/Tasks/CreateTask.jsx'
 import Tasks from './components/Tasks/Tasks.jsx'
 import TaskDetails from './components/TaskDetails/TaskDetails.jsx'
+import Folders from './components/Folders/Folders.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
     {index: true, element: <Landing />},
     {path: 'about', element: <AboutUs />},
     {path: 'home', element: <Home/>, children:[
+      {index: true, element: <Folders />},
       {path: 'addTask', element: <CreateTask />},
       {path: 'tasks', element: <Tasks />},
       {path: 'tasks/:uniqueId', element:<TaskDetails/>}

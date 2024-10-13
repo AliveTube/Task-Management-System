@@ -3,9 +3,10 @@ import RegisterCSS from './Register.module.css'
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 
-export default function RegisterContent({ handleRegisterSubmit, handleRegisterInputChange, validationMessage, handleInputValidation, formElem}) {
+export default function RegisterContent(
+    { handleRegisterSubmit, handleRegisterInputChange, handleInputValidation, validationMessage, formElem, EmailNotUsedBefore }) {
 
-    let isValidInput = useSelector((state)=> state.RegisterData.isValidInput);
+    let isValidInput = useSelector((state) => state.RegisterData.isValidInput);
 
     return <>
         <div className={RegisterCSS.registerPageContainer}>
@@ -18,9 +19,9 @@ export default function RegisterContent({ handleRegisterSubmit, handleRegisterIn
                     {/* Email Input Box =================*/}
                     <label htmlFor="email" className={RegisterCSS.label}>Email</label>
                     <input type="email" placeholder="user@example.com" id="email" name="email"
-                        className={isValidInput.email ? RegisterCSS.inputAccepted : RegisterCSS.inputNotAccepted}
+                        className={(isValidInput.email && EmailNotUsedBefore) ? RegisterCSS.inputAccepted : RegisterCSS.inputNotAccepted}
                         onChange={handleRegisterInputChange} onBlur={handleInputValidation} required />
-                    <span className={isValidInput.email ? RegisterCSS.messageDisabled : RegisterCSS.messageEnabled}>
+                    <span className={(isValidInput.email && EmailNotUsedBefore) ? RegisterCSS.messageDisabled : RegisterCSS.messageEnabled}>
                         {validationMessage.email}</span>
 
                     {/* User Name Input Box ===============*/}
