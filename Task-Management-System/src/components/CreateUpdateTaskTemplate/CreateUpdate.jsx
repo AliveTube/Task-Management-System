@@ -1,9 +1,18 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CreateTask from './CreateUpdate.module.css'; // Import the CSS file
 
 //in the case of craete task will be empty 
 //in the case of update task will be the old task that we updating 
 export default function CreateUpdate({handleSubmit,Task = {}}){ 
+
+    const getTodayDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     //if Task is empty we start from Defualt
     //if Task is not empty we start from Task
@@ -11,7 +20,7 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
         title: '',
         description: '',
         priority: 'Low',
-        startDate: '',
+        startDate: getTodayDate(),
         deadLine: '',
         status: 'Pending',
     } : Task);
@@ -26,10 +35,16 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
         handleSubmit(newTask.current);
     };
 
+    const navigate = useNavigate();
+
+    const navigateToTasks = () => {
+        navigate('/home/tasks');
+    }
+
     return(
         <>
             <div className={CreateTask['task-form']}>
-                <h2>{Object.keys(Task).length === 0 ? 'Create a New Task' : 'Update Task'}</h2>
+                <h2 className={CreateTask['Header']}>{Object.keys(Task).length === 0 ? 'New Task' : 'Update Task'}</h2>
                 <form onSubmit={onSubmit}>
                     <div className={CreateTask['form-group']}>
                         <label>Title</label>
@@ -52,53 +67,38 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
                             required
                         ></textarea>
                     </div>
-                    <div className={CreateTask['form-group']}>
-                        <label>Start Date</label>
-                        <input
-                            type="date"
-                            name="startDate"
-                            placeholder={newTask.current.startDate}
-                            // value={newTask.current.startDate}
-                            onChange={handleInputChange}
-                        />
+                    <div className={CreateTask['Deadline_Priority']}>
+                        <div className={CreateTask['Deadline']}>
+                            <label>Deadline</label>
+                            <input
+                                type="date"
+                                name="deadLine"
+                                placeholder={newTask.current.deadLine}
+                                // value={newTask.current.deadLine}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className={CreateTask['form-group']}>
+                            <label>Priority</label>
+                            <select
+                                name="priority"
+                                placeholder={newTask.current.priority}
+                                // value={newTask.current.priority}
+                                onChange={handleInputChange}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className={CreateTask['form-group']}>
-                        <label>Deadline</label>
-                        <input
-                            type="date"
-                            name="deadLine"
-                            placeholder={newTask.current.deadLine}
-                            // value={newTask.current.deadLine}
-                            onChange={handleInputChange}
-                        />
+
+                    <div className={CreateTask['Btns']}>
+                        <button type="submit" className={CreateTask['submit-button']}>
+                            {Object.keys(Task).length === 0 ? 'Create Task' : 'Update Task'}
+                        </button>
+                        <button className={CreateTask['cancel-button']} onClick={navigateToTasks}>Cancel</button>
                     </div>
-                    <div className={CreateTask['form-group']}>
-                        <label>Priority</label>
-                        <select
-                            name="priority"
-                            placeholder={newTask.current.priority}
-                            // value={newTask.current.priority}
-                            onChange={handleInputChange}
-                        >
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
-                    {/* <div className={CreateTask['form-group']}>
-                        <label>Status</label>
-                        <select
-                            name="status"
-                            value={task.status}
-                            onChange={handleInputChange}
-                        >
-                            <option value="Pending">Pending</option>
-                            <option value="InProgress">In Progress</option>
-                        </select>
-                    </div> */}
-                    <button type="submit" className={CreateTask['submit-button']}>
-                        {Object.keys(Task).length === 0 ? 'Create Task' : 'Update Task'}
-                    </button>
                 </form>
             </div>
         </>
