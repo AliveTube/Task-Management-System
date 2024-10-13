@@ -16,14 +16,18 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
 
     //if Task is empty we start from Defualt
     //if Task is not empty we start from Task
-    let newTask = useRef(Object.keys(Task).length === 0 ? {
-        title: '',
-        description: '',
-        priority: 'Low',
-        startDate: getTodayDate(),
-        deadLine: '',
-        status: 'Pending',
-    } : Task);
+    let newTask = useRef(
+        Object.keys(Task).length === 0 
+        ? {
+            title: '',
+            description: '',
+            priority: 'Low',
+            startDate: getTodayDate(),
+            deadLine: '',
+            status: 'Pending',
+        } 
+        : Task
+    );
 
     const handleInputChange = (e) => {
         newTask.current = {...newTask.current,[e.target.name]: e.target.value};
@@ -73,7 +77,7 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
                             <input
                                 type="date"
                                 name="deadLine"
-                                placeholder={newTask.current.deadLine}
+                                // placeholder={newTask.current.deadLine}
                                 // value={newTask.current.deadLine}
                                 onChange={handleInputChange}
                             />
@@ -82,7 +86,7 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
                             <label>Priority</label>
                             <select
                                 name="priority"
-                                placeholder={newTask.current.priority}
+                                // placeholder={newTask.current.priority}
                                 // value={newTask.current.priority}
                                 onChange={handleInputChange}
                             >
