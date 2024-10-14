@@ -1,4 +1,5 @@
 .container{
+    height: 100vh;
     background-color: #F5F7FA;
     display: flex;
     flex-direction: row;
@@ -7,26 +8,29 @@
     margin-bottom: 50px;
 }
 .container h1{
-    width: 50%;
-    font-size: 80px;
+    font-size: 60px;
+    font-weight: bold;
+    width: 40%;
 }
 .container div{
-    color: #4D4D4D;
+    /* color: #4D4D4D; */
 }
 .container span{
     color: #4CAF4F;
 }
 .container img{
-    width: 500px;
-    height: 500px;
+    max-width: 33%;
+    /* height: 500px; */
+    margin: 2rem;
 }
 
 .article{
     color: #4D4D4D;
-    font-size: 40px;
+    font-size: 30px;
     padding: 10px 120px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .article p{
     padding-bottom: 50px;
 }
+

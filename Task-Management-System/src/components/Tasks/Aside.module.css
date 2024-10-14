@@ -1,8 +1,10 @@
 .aside{
+    display: flex;
+    flex-direction: column;
     background-color: #EDEFF2;
     margin-left: 4%;
     margin: 40px;
-    width: 15%;
+    width: 18%;
     padding: 40px;
     height: 70vh;
     border-radius: 10px;
@@ -14,4 +16,36 @@
     font-weight: 600;
     color: #6B7A99;
     margin-bottom: 20px;
+}
+
+.card{
+    background-color: #ECD4D4;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e7a2a2;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card:hover{
+    background-color: #FFD1D1;
+    transform: background-color 0.5s ease;
+}
+
+.card h5{
+    font-size: 16px;
+    font-weight: 700;
+    color: #AF4C4C;
+    margin-bottom: 10px;
+}
+
+.arrow{
+    font-size: 20px;
+    color: #AF4C4C;
 }
