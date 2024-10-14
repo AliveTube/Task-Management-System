@@ -1,114 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db');  // Import the database connection
 
 // Initialize Express
 const app = express();
 
-//Add Routes
+// Import routes
+const userRoute = require('./routes/userRoute');
+const taskRoute = require('./routes/taskRoute');
 const registerRoute = require('./routes/registerRoute');
-const homeRoute = require('./routes/homeRoute')
+const homeRoute = require('./routes/homeRoute');
 const loginRoute = require('./routes/loginRoute');
 
 // Middleware
 app.use(cors());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to the MySQL database
-connectDB();  // This will connect when the server starts
 
-//use Register Route
+// Use Routes
+app.use(userRoute);
+app.use(taskRoute);
 app.use(registerRoute);
 app.use(homeRoute);
 app.use(loginRoute);
 
 // Sample route to verify server is running
 app.get('/', (req, res) => {
-  res.send('API is running');
-});
-
-// Route to fetch users from the database
-app.get('/api/users', async (req, res) => {
-    try {
-        // Establish a new connection for this route
-        const connection = await connectDB();
-
-        // Execute a SQL query to fetch users
-        const [rows] = await connection.execute('SELECT * FROM Users');
-
-        // Send the result as a JSON response
-        res.json(rows);
-    } catch (err) {
-        console.error('Error fetching users:', err.message);
-        res.status(500).send('Server Error');
-    }
-});
-
-app.get('/api/tasks/', async (req, res) => {
-    try {
-        // Establish a new connection for this route
-        const connection = await connectDB();
-
-        // Execute a SQL query to fetch users
-        const [rows] = await connection.execute('SELECT * FROM Tasks');
-
-        // Send the result as a JSON response
-        res.json(rows);
-    } catch (err) {
-        console.error('Error fetching users:', err.message);
-        res.status(500).send('Server Error');
-    }
-});
-
-app.get('/api/tasks/:uniqueId', async (req, res) => {
-    try {
-        const { uniqueId } = req.params;
-        console.log('Requested Task ID:', uniqueId);
-
-        const connection = await connectDB();
-        const [rows] = await connection.execute(
-            'SELECT * FROM Tasks WHERE uniqueId = ?',
-            [uniqueId]
-        );
-
-        if (rows.length === 0) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-
-        res.json(rows); // Send the task(s) as JSON
-    } catch (err) {
-        console.error('Error fetching task:', err.message);
-        res.status(500).send('Server Error');
-    }
-});
-
-app.put('/api/tasks/:uniqueId', async (req, res) => {
-    try {
-        const { uniqueId } = req.params;
-        const { status } = req.body;
-
-        const connection = await connectDB();
-        const [result] = await connection.execute(
-            'UPDATE Tasks SET status = ? WHERE uniqueId = ?',
-            [status, uniqueId]
-        );
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-
-        const [updatedTask] = await connection.execute(
-            'SELECT * FROM Tasks WHERE uniqueId = ?',
-            [uniqueId]
-        );
-
-        res.status(200).send("Task status updated successfully");
-    }
-    catch (err) {
-        console.error('Error updating task status:', err.message);
-        res.status(500).send('Server Error');
-    }
+    res.send('API is running');
 });
 
 // Start the server
