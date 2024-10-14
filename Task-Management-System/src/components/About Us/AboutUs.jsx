@@ -6,10 +6,10 @@ const AboutUs = () => {
   return (
     <>
       <div className = {styles.container}>
-        <h1>
-          <div> About </div>
-          <span> Task Management System </span>
-        </h1>
+          <h1>
+            <div> About </div>
+            <span> Task Management System </span>
+          </h1>
         <img src={taskManagement} alt="About Task Management Website" />
       </div>
       <article className = {styles.article}>
