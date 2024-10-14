@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Folders.module.css';
+import styles from './Folder.module.css';
 import binIcon from '../../Images/Icons/bin.svg'
 import editIcon from '../../Images/Icons/Edit.svg'
 import { IoFolderOpen } from "react-icons/io5";

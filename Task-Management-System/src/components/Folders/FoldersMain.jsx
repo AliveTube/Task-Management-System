@@ -2,12 +2,18 @@ import styles from './FoldersMain.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Folder from './Folder';
+import CreateFolder from './CreateFolder';
+import { useState } from 'react';
 
 export default function FolderMain({ folders }){
-  const navigate = useNavigate();
+  let [creatingFolder,setCreatingFolder] = useState(false);
 
-  const navigateToAddTask = () => {
-    navigate('/home/addTask');
+  const openCreateFolder = () => {
+    setCreatingFolder(true);
+  };
+
+  const closeCreateFolder = () => {
+    setCreatingFolder(false);
   };
 
   return (
@@ -15,10 +21,11 @@ export default function FolderMain({ folders }){
       <div className={styles.container}>
         <h1>Folders</h1>
         <div className={styles.buttonsContainer}>
-          <button className={styles.button} onClick={navigateToAddTask}>Add Folder</button>
+          <button className={styles.button} onClick={openCreateFolder}>Add Folder</button>
         </div>
       </div>
       <ul className={styles.ul}>
+        <CreateFolder creatingFolder={creatingFolder} closeCreateFolder={closeCreateFolder}/>
         {folders.map((folder) => (
           <Folder key={folder.uniqueId} folder={folder}/>
         ))}
