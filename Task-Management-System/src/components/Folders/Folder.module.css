@@ -39,6 +39,15 @@
     margin-right: 15px;
 }
 
+.createFolder{
+    flex-grow: 1;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin-right: 15px;
+    border: none;
+}
+
 .priority {
     font-size: 22px;
     font-weight: 700;
