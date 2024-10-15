@@ -7,7 +7,7 @@ const loginController = (req, res) => {
     db.query(`select * from users where email = '${email}'`, (err, data) => {
         if (err) return res.json({ message: "Error!" })
         else if (!data.length) {
-            return res.json({ message: "The email you entered does not exist. Please check and try again." })
+            return res.json({ message: "The email you entered does not exist. Please check and try again.", emailNotExist: true })
         }
         else {
             const isMatch = bcrypt.compareSync(password, data[0].password)
@@ -16,7 +16,7 @@ const loginController = (req, res) => {
                 return res.json({ message: "Login successful! Welcome back!", token });
             }
             else {
-                return res.json({ message: "Incorrect password. Please try again." });
+                return res.json({ message: "Incorrect password. Please try again.", IncorrectPassword: true });
             }
         }
     })
