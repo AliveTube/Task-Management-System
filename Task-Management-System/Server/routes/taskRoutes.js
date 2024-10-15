@@ -1,6 +1,6 @@
 const express = require('express');
 const router =  express.Router();
-const taskController = require('../controllers/taskController.js');
+const taskController = require('../../Server/controllers/taskController.js');
 
 //Rout to addTASK
 router.get('/tasks',taskController.getAllTasks);

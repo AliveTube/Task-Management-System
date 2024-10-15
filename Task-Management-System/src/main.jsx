@@ -26,7 +26,11 @@ const router = createBrowserRouter([
       {path: 'addTask', element: <CreateTask />},
       {path: 'updateTask', element: <UpdateTask></UpdateTask>},
       {path: 'tasks', element: <Tasks />},
-      {path: 'tasks/:uniqueId', element:<TaskDetails/>}
+      {path: 'tasks/:uniqueId', element:<TaskDetails/>},
+      //newly added components
+      { path: 'profile', element: <ProfileComponent /> },
+      { path: 'todo-lists', element: <TodoLists /> },
+
     ]},
   ]},
   {path:'register', element: <RegisterPage></RegisterPage>},
