@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-//TODO specify the actuall used db 
 const connectDB = require('../config/db');  // Import the database connection
 
 exports.getAllTasks = async(req, res) => {
-     
   const db = await connectDB();
   
     const sql = 'SELECT * FROM tasks';
@@ -88,7 +85,24 @@ exports.updateTask = async(req, res) => {
         res.status(500).json({ message: 'Error fetching tasks for to-do list' });
     }
 };
+exports.updateTaskStatus = (req, res) => {
+  try {
+      const { uniqueId } = req.params;
+      const { status } = req.body;
 
+      db.query('UPDATE Tasks SET status = ? WHERE uniqueId = ?', [status, uniqueId], (err, result) => {
+          if (err) {
+              return res.status(500).send('Server Error');
+          }
+      });
+      res.status(200).send('Task status updated successfully');
+  }
+  catch (err) {
+      console.error('Error updating task status:', err.message);
+      res.status(500).send('Server Error');
+>>>>>>> d2fa509 (Added routes and controllers for tasks and user)
+  }
+};
 // Add a new task to a specific to-do list by ID
 exports.addTaskToTodoList = async (req, res) => {
   const db = await connectDB();
@@ -102,57 +116,5 @@ exports.addTaskToTodoList = async (req, res) => {
     } catch (error) {
         console.error('Error adding task to to-do list:', error);
         res.status(500).json({ message: 'Error adding task to to-do list' });
-=======
-const db = require('../config/dbConnection');
-
-exports.getAllTasks = (req, res) => {
-    try {
-        db.query('SELECT * FROM Tasks', (err, data) => {
-            if (err) {
-                return res.status(500).send('Server Error');
-            }
-            res.json(data);
-        });
-    } catch (err) {
-        console.error('Error fetching tasks:', err.message);
-        res.status(500).send('Server Error');
-    }
-};
-
-exports.getTaskById = (req, res) => {
-    try {
-        const { uniqueId } = req.params;
-        db.query('SELECT * FROM Tasks WHERE uniqueId = ?', [uniqueId], (err, data) => {
-            if (err) {
-                return res.status(500).send('Server Error');
-            }
-            if (!data.length) {
-                return res.status(404).json({ message: 'Task not found' });
-            }
-            res.json(data[0]);
-        });
-
-    } catch (err) {
-        console.error('Error fetching task:', err.message);
-        res.status(500).send('Server Error');
-    }
-};
-
-exports.updateTaskStatus = (req, res) => {
-    try {
-        const { uniqueId } = req.params;
-        const { status } = req.body;
-
-        db.query('UPDATE Tasks SET status = ? WHERE uniqueId = ?', [status, uniqueId], (err, result) => {
-            if (err) {
-                return res.status(500).send('Server Error');
-            }
-        });
-        res.status(200).send('Task status updated successfully');
-    }
-    catch (err) {
-        console.error('Error updating task status:', err.message);
-        res.status(500).send('Server Error');
->>>>>>> d2fa509 (Added routes and controllers for tasks and user)
     }
 };
