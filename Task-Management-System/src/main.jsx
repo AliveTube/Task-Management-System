@@ -16,7 +16,6 @@ import Tasks from './components/Tasks/Tasks.jsx'
 import TaskDetails from './components/TaskDetails/TaskDetails.jsx'
 import Folders from './components/Folders/Folders.jsx'
 import UpdateTask from './components/UpdateTask/UpdateTask.jsx'
-import TodoLists from './components/ToDoLists/TodoLists.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
@@ -29,13 +28,19 @@ const router = createBrowserRouter([
       {path: 'tasks', element: <Tasks />},
       {path: 'tasks/:uniqueId', element:<TaskDetails/>},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fbcb3d4 (solving conflicts)
       //newly added components
       { path: 'profile', element: <ProfileComponent /> },
       { path: 'todo-lists', element: <TodoLists /> },
 
+<<<<<<< HEAD
 =======
       {path: 'todolists/:folderId', element:<TodoLists/>}
 >>>>>>> 14d206d (Home Page Completed (Back & Front) - Folder Management Features - Token Store Handling - NavBar completed with sign out)
+=======
+>>>>>>> fbcb3d4 (solving conflicts)
     ]},
   ]},
   {path:'register', element: <RegisterPage></RegisterPage>},
