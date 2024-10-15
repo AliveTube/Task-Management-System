@@ -2,23 +2,36 @@ import React, { useEffect, useState } from 'react';
 import styles from './Folders.module.css';
 import axios from 'axios';
 import FolderMain from './FoldersMain';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { jwtDecode } from 'jwt-decode';
+import { eventEmitter } from './eventEmitter';
 
 export default function Folders() {
     const [folders, setFolders] = useState([]);
-    // const dispatch = useDispatch()
-    // const tokenInUse = useSelector((state) => state)
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVJZCI6MzMsInVzZXJuYW1lIjoiS2FyaW0gSG9zYW0iLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA3JEJzUHpDTS5hMVRCVTNCYmI0WTFPLi4vMDhvdUhqNDZWUURsY3JFVC9nS2N5ZmNKbGtYVjc2IiwicGhvbmVOdW1iZXIiOm51bGwsImlhdCI6MTcyODg1OTg3M30.dajHY3BNumFkpd9BWhxfu50vxyKR4wTQ0u6CQX_jMKQ'
+    const token = useSelector((state) => state.TokenInUse);
+    let userData;
+    if (token.length) {
 
-    useEffect(() => {
-        axios.get(`http://localhost:3000/api/folders/${token}`)
-            .then(response => {
-                setFolders(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching folders:', error);
-            })
-    }, []);
+        userData = jwtDecode(token);
+
+        const getFolderFromDB = () => {
+            axios.get(`http://localhost:3000/api/folders/${userData.uniqueId}`)
+                .then(response => {
+                    setFolders(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching folders:', error);
+                })
+        }
+        
+        useEffect(() => {
+            getFolderFromDB();                                      // Fetch data immediately on component mount
+            eventEmitter.on('updateFolders', getFolderFromDB);      // Listen for the updateFolders event
+            return () => {
+                eventEmitter.off('updateFolders', getFolderFromDB); // Clean up the updateFolders event listener on unmount
+            };
+        }, []);
+    }
 
     return (
         <div className={styles.container}>
