@@ -39,11 +39,31 @@
     margin-bottom: 5px;
 }
 
-.input {
-    margin-bottom: 18px;
+.inputAccepted {
+    margin-bottom: 22px;
     border: #C1C1C1 solid 1px;
     border-radius: 3px;
     padding: 5px;
+}
+
+.inputNotAccepted {
+    margin-bottom: 21px;
+    border: #ff0000 solid 2px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.messageEnabled{
+    color: red;
+    height: 0px;
+    position: relative;
+    top: -20px;
+    font-size: 0.8rem;
+}
+
+.messageDisabled{ 
+    color: red;
+    display: none;
 }
 
 
