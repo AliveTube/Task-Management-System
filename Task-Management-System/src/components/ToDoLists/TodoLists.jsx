@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import TodoListStyle from './TodoLists.module.css';
 import TodoListItem from './TodoListItem';
 import TodoListForm from './TodoListForm';
-=======
-import TodoListStyle from './TodoLists.module.css'; // Import your CSS module
->>>>>>> 14d206d (Home Page Completed (Back & Front) - Folder Management Features - Token Store Handling - NavBar completed with sign out)
-=======
-import TodoListStyle from './TodoLists.module.css';
-import TodoListItem from './TodoListItem';
-import TodoListForm from './TodoListForm';
->>>>>>> fbcb3d4 (solving conflicts)
 import { useParams } from 'react-router-dom';
 
 const TodoLists = () => {
@@ -69,8 +59,4 @@ const TodoLists = () => {
   );
 };
 
-<<<<<<< HEAD
 export default TodoLists;
-=======
-export default TodoLists;
->>>>>>> fbcb3d4 (solving conflicts)
