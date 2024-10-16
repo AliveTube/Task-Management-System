@@ -48,7 +48,7 @@ export default function Home() {
     return (
         <div style={{ display: 'flex' }}>
             <Aside filteredTasks={filteredTasks} />
-            <Outlet />
+            <Outlet context={{ tasks, updateTasks }} />
         </div>
     );
 }

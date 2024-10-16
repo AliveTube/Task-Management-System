@@ -12,9 +12,8 @@ function choosePriorityClass(priority) {
     else return TDCSS.LowPriority;
 }
 
-export default function TaskDetails({ toDoListId }) {
+export default function TaskDetails({ }) {
     const [task, setTask] = useState(null);
-    const [loading, setLoading] = useState(true);
     const { updateTasks } = useOutletContext();
     const { uniqueId } = useParams();
 
@@ -41,16 +40,16 @@ export default function TaskDetails({ toDoListId }) {
     const handleTaskDelete = async (uniqueId) => {
         try {
             await axios.delete(`http://localhost:3000/api/tasks/${task.uniqueId}`);
-            console.log(`Task with uniqueId ${uniqueId} deleted successfully.`);
+            
             updateTasks();
         } catch (error) {
             console.error('Error deleting task:', error);
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    const navigateToUpdate = () => {
+        navigate(`/home/updateTask/${uniqueId}`);
+    };
 
     if (!task) {
         return <div>No task found.</div>;
@@ -64,7 +63,7 @@ export default function TaskDetails({ toDoListId }) {
                 <h1 className={TDCSS.Title}>{task.title}</h1>
                 <div className={TDCSS.HeaderRight}>
                     <button className={TDCSS.button}>Mark as Done</button>
-                    <img src={editIcon} alt="edit" style={{ width: '2rem' }} />
+                    <img onClick = {navigateToUpdate} className = {TDCSS.binIcon} src={editIcon} alt="edit" style={{ width: '2rem' }} />
                     <img onClick = {handleTaskDelete} className = {TDCSS.binIcon} src={binIcon} alt="bin" style={{ width: '2rem' }} />
                 </div>
             </div>

@@ -14,7 +14,7 @@ const CreateTask = () => {
             await axios.post(`http://localhost:3000/api/tasks/${toDoListId}`, newTask);
 
             const res = await axios.get(`http://localhost:3000/api/tasks/${toDoListId}`);
-            updateTasks();
+            updateTasks(res.data);
             alert('Task created successfully');
 
             navigate(`/home/tasks/${toDoListId}`);

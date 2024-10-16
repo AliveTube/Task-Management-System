@@ -1,7 +1,7 @@
 const db = require("../config/dbConnection");
 
 exports.getAllTodoListsForFolder = (req, res) => {
-    const folderId = req.params.folderId;
+    const folderId = req.params.folderID;
     const sqlQuery = "SELECT * FROM todolist WHERE folderId = ?";
 
     db.query(sqlQuery, [folderId], (err, rows) => {
@@ -16,10 +16,10 @@ exports.getAllTodoListsForFolder = (req, res) => {
 exports.createTodoList = (req, res) => {
     const { title, folderId, startDate } = req.body;
 
-    const sqlQuery = `
-      INSERT INTO todoList (title, folderId, startDate)
-      VALUES (?, ?, ?)
-    `;
+    const sqlQuery =
+      `INSERT INTO todoList (title, folderId, startDate)
+      VALUES (?, ?, ?)`
+    ;
 
     db.query(sqlQuery, [title, folderId, startDate], (err, result) => {
         if (err) {
@@ -28,10 +28,10 @@ exports.createTodoList = (req, res) => {
         }
 
         res.status(201).json({
-            uniqueId: result.insertId, 
-            title, 
-            folderId, 
-            startDate 
+            uniqueId: result.insertId,
+            title,
+            folderId,
+            startDate
         });
     });
 };
@@ -52,3 +52,21 @@ exports.deleteTodoList = (req, res) => {
         res.status(200).json({ message: 'To-do list deleted successfully' });
     });
 };
+
+
+exports.editTodoList = (req, res) => {
+    const { todoListID, newTitle } = req.body;
+    if (!newTitle.length) return res.json({ message: "The TodoList Name is Empty!" });
+    else {
+        db.query(`select * from todolist where uniqueId = '${todoListID}'`, (err,data)=>{
+            if(err) return res.json({message:"Error!"});
+            else if(!data.length) return res.json({message:"The TodoList doesn't exist!"});
+            else{
+                db.query(`update todolist set title = '${newTitle}' where uniqueId = '${todoListID}'`,(err,data)=>{
+                    if(err) return res.json({message:"Error!"});
+                    return res.json({message:"TodoList title updated successfully:"});
+                })
+            }
+        })
+    }
+}
