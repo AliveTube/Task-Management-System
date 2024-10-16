@@ -19,16 +19,16 @@ exports.getUserProfile = (req, res) => {
 
 exports.updateUserProfile = (req, res) => {
     const { id: userId } = req.params;
-    const { name, email, phone, bio, profilePicture } = req.body;
+    const { name, email } = req.body;
 
     try {
         const sqlQuery = `
-            UPDATE Users
-            SET name = ?, email = ?, phone = ?, bio = ?, profile_picture = ? 
+            UPDATE users
+            SET username = ?, email = ?
             WHERE uniqueId = ?
         `;
 
-        db.query(sqlQuery, [name, email, phone, bio, profilePicture, userId], (err, result) => {
+        db.query(sqlQuery, [name, email, userId], (err, result) => {
             if (err) return res.status(500).send('Server Error');
             if (result.affectedRows === 0) {
                 return res.status(404).json({ message: 'User not found' });
