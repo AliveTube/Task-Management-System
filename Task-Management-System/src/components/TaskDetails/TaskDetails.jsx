@@ -12,9 +12,8 @@ function choosePriorityClass(priority) {
     else return TDCSS.LowPriority;
 }
 
-export default function TaskDetails() {
+export default function TaskDetails({ }) {
     const [task, setTask] = useState(null);
-    const [loading, setLoading] = useState(true);
     const { updateTasks } = useOutletContext();
     const { uniqueId } = useParams();
 
@@ -23,7 +22,7 @@ export default function TaskDetails() {
     useEffect(() => {
         const fetchTask = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/tasks/${uniqueId}`);
+                const response = await axios.get(`http://localhost:3000/api/taskDetails/${uniqueId}`);
                 setTask(response.data);
             } catch (error) {
                 console.error('Error fetching task:', error);
@@ -35,15 +34,14 @@ export default function TaskDetails() {
     }, [uniqueId]);
 
     const navigateToTasks = () => {
-        navigate('/home/tasks');
+        navigate(`/home/tasks/${task.toDoListId}`);
     };
 
-    const handleTaskDelete = async () => {
+    const handleTaskDelete = async (uniqueId) => {
         try {
-            await axios.delete(`http://localhost:3000/api/tasks/${uniqueId}`);
-            const response = await axios.get('http://localhost:3000/api/tasks');
-            updateTasks(response.data);
-            navigateToTasks();
+            await axios.delete(`http://localhost:3000/api/tasks/${task.uniqueId}`);
+            
+            updateTasks();
         } catch (error) {
             console.error('Error deleting task:', error);
         }
@@ -52,10 +50,6 @@ export default function TaskDetails() {
     const navigateToUpdate = () => {
         navigate(`/home/updateTask/${uniqueId}`);
     };
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     if (!task) {
         return <div>No task found.</div>;

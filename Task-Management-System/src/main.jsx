@@ -23,18 +23,18 @@ const router = createBrowserRouter([
   { path: '/', element: <App />, children: [
     {index: true, element: <Landing />},
     {path: 'about', element: <AboutUs />},
-    {path: 'home', element: <Home/>, children:[
+    {path: 'home', element: <Home />, children:[
       {index: true, element: <Folders />},
       {path: 'addTask', element: <CreateTask />},
       {path: 'updateTask/:uniqueId', element: <UpdateTask></UpdateTask>},
-      {path: 'tasks', element: <Tasks />},
-      {path: 'tasks/:uniqueId', element:<TaskDetails/>},
+      {path: 'tasks/:uniqueId', element: <Tasks />},
+      {path: 'taskDetails/:uniqueId', element:<TaskDetails/>},
       {path: 'todolists/:folderId', element:<TodoLists/>},
       { path: 'profile', element: <Profile /> },
     ]},
   ]},
-  {path:'register', element: <RegisterPage></RegisterPage>},
-  {path:'login', element: <Login/>},
+  {path:'register', element: <RegisterPage />},
+  {path:'login', element: <Login />},
 
   { path: '*', element: <Error /> }
 ]);

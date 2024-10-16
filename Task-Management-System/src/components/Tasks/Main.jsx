@@ -3,14 +3,16 @@ import styles from './Main.module.css';
 import Task from './Task';
 import { AiFillFilter } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Main = ({ activeTasks, toggleTaskStatus }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [filterType, setFilterType] = useState('');
+  const { toDoListId } = useParams();
 
   const navigateToAddTask = () => {
-    navigate('/home/addTask');
+    navigate(`/home/addTask/${toDoListId}`);
   };
 
   const toggleDropdown = () => {
