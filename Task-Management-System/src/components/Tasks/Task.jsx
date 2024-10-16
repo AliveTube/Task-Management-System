@@ -15,7 +15,7 @@ const Task = ({ task, toggleTaskStatus }) => {
   const navigate = useNavigate();
 
   const navigateToTaskDetails = () => {
-    navigate(`/home/tasks/${task.uniqueId}`);
+    navigate(`/home/taskDetails/${task.uniqueId}`);
   };
 
   const getPriorityColor = (priority) => {

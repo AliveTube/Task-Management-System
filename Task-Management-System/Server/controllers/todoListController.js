@@ -14,18 +14,28 @@ exports.getAllTodoListsForFolder = (req, res) => {
 };
 
 exports.createTodoList = (req, res) => {
-    const { title } = req.body;
+    const { title, folderId, startDate } = req.body;
 
-    const sqlQuery = "INSERT INTO todoList (title) VALUES (?)";
+    const sqlQuery = `
+      INSERT INTO todoList (title, folderId, startDate)
+      VALUES (?, ?, ?)
+    `;
 
-    db.query(sqlQuery, [title], (err, result) => {
+    db.query(sqlQuery, [title, folderId, startDate], (err, result) => {
         if (err) {
             console.error('Error creating to-do list:', err);
             return res.status(500).json({ message: 'Error creating to-do list' });
         }
-        res.status(201).json({ id: result.insertId, title });  // Return new list's ID and title
+
+        res.status(201).json({
+            uniqueId: result.insertId, 
+            title, 
+            folderId, 
+            startDate 
+        });
     });
 };
+
 
 exports.deleteTodoList = (req, res) => {
     const todoListId = req.params.todoListId;

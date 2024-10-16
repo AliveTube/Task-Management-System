@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const {
-    getAllTasks,
+    getTasksByToDoListId,
     getTaskById,
     updateTaskStatus,
     createTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    getTasksByUserId
 } = require('../controllers/taskController');
 
-router.get('/api/tasks', getAllTasks);
-router.get('/api/tasks/:uniqueId', getTaskById);
+router.get('/api/tasks/:toDoListId', getTasksByToDoListId);
+router.get('/api/allTasks/:uniqueId', getTasksByUserId);
+router.get('/api/taskDetails/:uniqueId', getTaskById);
 router.put('/api/tasks/:uniqueId', updateTaskStatus);
-router.post('/api/tasks', createTask);
+router.post('/api/tasks/:toDoListId', createTask);
 router.put('/api/tasks/:uniqueId', updateTask);
 router.delete('/api/tasks/:uniqueId', deleteTask);
 
