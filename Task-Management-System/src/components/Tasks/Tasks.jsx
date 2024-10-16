@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
 
 const Tasks = () => {
-  const { tasks, setTasks } = useOutletContext();
+  const { tasks, updateTasks } = useOutletContext();
 
   const toggleTaskStatus = async (task) => {
     const updatedStatus = task.status === 'Completed' ? 'InProgress' : 'Completed';
@@ -21,7 +21,7 @@ const Tasks = () => {
         t.uniqueId === task.uniqueId ? updatedTask : t
       );
 
-      setTasks(updatedTasks);
+      updateTasks(updatedTasks);
     } catch (error) {
       console.error('Error updating task status:', error);
     }
@@ -33,7 +33,7 @@ const Tasks = () => {
   return (
     <div className={styles.container}>
       <div className={styles.tasksContainer}>
-        <Main tasks={activeTasks} toggleTaskStatus={toggleTaskStatus} />
+        <Main activeTasks={activeTasks} toggleTaskStatus={toggleTaskStatus} />
         <CompletedTasks tasks={completedTasks} toggleTaskStatus={toggleTaskStatus} />
       </div>
     </div>

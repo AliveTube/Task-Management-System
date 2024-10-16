@@ -10,6 +10,8 @@ const taskRoute = require('./routes/taskRoute');
 const registerRoute = require('./routes/registerRoute');
 const homeRoute = require('./routes/homeRoute');
 const loginRoute = require('./routes/loginRoute');
+const todoListRoute = require('./routes/todoListRoute');
+const profileRoute = require('./routes/profileRoute');
 
 // Middleware
 app.use(cors());
@@ -23,6 +25,8 @@ app.use(taskRoute);
 app.use(registerRoute);
 app.use(homeRoute);
 app.use(loginRoute);
+app.use(todoListRoute);
+app.use(profileRoute);
 
 // Sample route to verify server is running
 app.get('/', (req, res) => {

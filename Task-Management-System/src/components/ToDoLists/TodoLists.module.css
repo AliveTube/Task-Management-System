@@ -1,14 +1,117 @@
+/* Container for the entire list section */
 .todolists-container {
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto; /* Center the content */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
+/* Title styling */
+.todolists-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* To-Do list items */
 .todolist-item {
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; /* Space out the content */
+    align-items: center;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
 }
 
-h3 {
+/* Hover effect for to-do list items */
+.todolist-item:hover {
+    background-color: #e9e9e9;
+}
+
+/* To-do list title */
+.todolist-item-title {
+    font-size: 20px;
+    color: #333;
     margin: 0;
+}
+
+/* To-do list description */
+.todolist-item-description {
+    color: #666;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Delete button styling */
+.todolist-item-delete-button {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for delete button */
+.todolist-item-delete-button:hover {
+    background-color: #ff4c4c;
+}
+
+/* Form to create a new to-do list */
+.todolists-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input fields for the form */
+.todolists-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Submit button for the form */
+.todolists-submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the submit button */
+.todolists-submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .todolists-container {
+        padding: 15px;
+    }
+
+    .todolist-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .todolist-item-delete-button {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
 }

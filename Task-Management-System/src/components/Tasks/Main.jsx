@@ -3,9 +3,8 @@ import styles from './Main.module.css';
 import Task from './Task';
 import { AiFillFilter } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-const Main = ({ tasks, toggleTaskStatus }) => {
+const Main = ({ activeTasks, toggleTaskStatus }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [filterType, setFilterType] = useState('');
@@ -22,15 +21,13 @@ const Main = ({ tasks, toggleTaskStatus }) => {
     setFilterType(filter);
     setShowDropdown(false);
     if (filter === 'date') {
-      const sortedTasks = tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-      setTasks([...sortedTasks]);
+      const sortedTasks = activeTasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
     }
     else if (filter === 'priority') {
-      const sortedTasks = tasks.sort((a, b) => {
+      const sortedTasks = activeTasks.sort((a, b) => {
         const priorityOrder = { 'Low': 1, 'Medium': 2, 'High': 3 };
         return priorityOrder[b.priority] - priorityOrder[a.priority];
       });
-      setTasks([...sortedTasks]);
     }
   };
 
@@ -52,7 +49,7 @@ const Main = ({ tasks, toggleTaskStatus }) => {
         </div>
       </div>
       <ul className={styles.ul}>
-        {tasks.map((task) => (
+        {activeTasks.map((task) => (
           <Task key={task.uniqueId} task={task} toggleTaskStatus={toggleTaskStatus} />
         ))}
       </ul>

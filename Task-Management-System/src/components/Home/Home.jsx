@@ -12,6 +12,7 @@ export default function Home() {
             try {
                 const response = await axios.get('http://localhost:3000/api/tasks');
                 setTasks(response.data);
+                console.log(response.data);
                 const filteredTasks = response.data
                     .filter(task => task.status !== 'Completed')
                     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
@@ -22,7 +23,7 @@ export default function Home() {
             }
         };
         fetchTasks();
-    }, []);
+    }, [setTasks]);
 
     const filterAndSetAsideTasks = (allTasks) => {
         const tasksForAside = allTasks
@@ -33,6 +34,7 @@ export default function Home() {
     };
 
     const updateTasks = (newTasks) => {
+        console.log(newTasks)
         setTasks(newTasks);
         filterAndSetAsideTasks(newTasks);
     };
@@ -40,7 +42,7 @@ export default function Home() {
     return (
         <div style={{ display: 'flex' }}>
             <Aside filteredTasks={filteredTasks} />
-            <Outlet context={{ tasks, setTasks: updateTasks }} />
+            <Outlet context={{ tasks, updateTasks }} />
         </div>
     );
 }

@@ -11,7 +11,7 @@ export default function UpdateTask(){
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
         priority: 'High',
         startDate: '2024-9-26',
-        deadLine: '2024-11-2',
+        deadline: '2024-11-2',
         status: 'Pending',
     };
 

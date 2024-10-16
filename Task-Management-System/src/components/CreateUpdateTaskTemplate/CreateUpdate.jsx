@@ -4,37 +4,33 @@ import CreateTask from './CreateUpdate.module.css'; // Import the CSS file
 
 //in the case of craete task will be empty 
 //in the case of update task will be the old task that we updating 
-export default function CreateUpdate({handleSubmit,Task = {}}){ 
+export default function CreateUpdate({handleSubmit, Task = {}}){ 
 
     const getTodayDate = () => {
         const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
+        return today;
     };
 
     //if Task is empty we start from Defualt
     //if Task is not empty we start from Task
     let newTask = useRef(
-        Object.keys(Task).length === 0 
+        Object.keys(Task).length === 0
         ? {
             title: '',
             description: '',
             priority: 'Low',
             startDate: getTodayDate(),
-            deadLine: '',
+            deadline: '',
             status: 'Pending',
-        } 
+        }
         : Task
     );
 
     const handleInputChange = (e) => {
-        newTask.current = {...newTask.current,[e.target.name]: e.target.value};
-        console.log(newTask.current);
+        newTask.current = {...newTask.current, [e.target.name]: e.target.value};
     };
 
-    const onSubmit =  (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         handleSubmit(newTask.current);
     };
@@ -76,7 +72,7 @@ export default function CreateUpdate({handleSubmit,Task = {}}){
                             <label>Deadline</label>
                             <input
                                 type="date"
-                                name="deadLine"
+                                name="deadline"
                                 // placeholder={newTask.current.deadLine}
                                 // value={newTask.current.deadLine}
                                 onChange={handleInputChange}
