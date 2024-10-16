@@ -1,61 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import styles from './TodoLists.module.css';
 import axios from 'axios';
-import TodoListStyle from './TodoLists.module.css';
-import TodoListItem from './TodoListItem';
-import TodoListForm from './TodoListForm';
+import TodoListMain from './TodoListMain';
+import { useSelector } from 'react-redux';
+import { jwtDecode } from 'jwt-decode';
+import { eventEmitter } from './eventEmitter';
 import { useParams } from 'react-router-dom';
 
-const TodoLists = () => {
+export default function TodoLists() {
   const { folderId } = useParams();
   const [todoLists, setTodoLists] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = useSelector((state) => state.TokenInUse);
+  let userData;
+  if (token.length) {
+    userData = jwtDecode(token);
+  }
 
-  useEffect(() => {
+  const getTodoListFromDB = () => {
     axios.get(`http://localhost:3000/api/todoLists/${folderId}`)
       .then(response => {
         setTodoLists(response.data);
-        setLoading(false);
+        console.log(response.data);
       })
       .catch(error => {
         setError('Error loading to-do lists');
-        setLoading(false);
       });
+  }
+  
+  useEffect(() => {
+    getTodoListFromDB();                                      
+    eventEmitter.on('updateTodoList', getTodoListFromDB);      
+    return () => {
+      eventEmitter.off('updateTodoList', getTodoListFromDB); 
+    };
   }, [folderId]);
 
-  const deleteTodoList = (uniqueId) => {
-    axios.delete(`http://localhost:3000/api/todoLists/${uniqueId}`)
-      .then(() => {
-        setTodoLists(todoLists.filter(list => list.uniqueId !== uniqueId));
-      })
-      .catch(error => {
-        console.error('Error deleting the to-do list:', error);
-      });
-  };
-
-  const addNewTodoList = (newList) => {
-    setTodoLists([...todoLists, newList]);
-  };
-
   return (
-    <div className={TodoListStyle["todolists-container"]}>
-      <h2>Your To-Do Lists</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      <TodoListForm folderId={folderId} addNewTodoList={addNewTodoList} />
-
-      <ul>
-        {todoLists.map((list) => (
-          <TodoListItem
-            key={list.uniqueId}
-            list={list}
-            deleteTodoList={deleteTodoList}
-          />
-        ))}
-      </ul>
+    <div className={styles.container}>
+      <div className={styles.tasksContainer}>
+        {error && <p>{error}</p>}
+        <TodoListMain todoLists={todoLists} setTodoLists={setTodoLists} folderId={folderId}/>
+      </div>
     </div>
   );
-};
-
-export default TodoLists;
+}

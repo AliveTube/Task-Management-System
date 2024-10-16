@@ -4,7 +4,8 @@ const router = express.Router();
 const {
     getAllTodoListsForFolder,
     createTodoList,
-    deleteTodoList
+    deleteTodoList,
+    editTodoList
 } = require('../controllers/todoListController');
 
 const {
@@ -12,11 +13,14 @@ const {
     addTaskToTodoList
 } = require('../controllers/taskController');
 
-router.get('/api/todoLists/:folderId', getAllTodoListsForFolder);
+router.get('/api/todoLists/:folderID', getAllTodoListsForFolder);
 router.post('/api/todoLists', createTodoList);
 router.delete('/api/todoLists/:todoListId', deleteTodoList);
 
 router.get('/api/:uniqueId/tasks', getTasksForTodoList);
 router.post('/api/:uniqueId/tasks', addTaskToTodoList);
+
+
+router.post('/api/editTodoList', editTodoList)
 
 module.exports = router;
