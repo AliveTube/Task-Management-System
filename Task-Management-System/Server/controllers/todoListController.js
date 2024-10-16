@@ -15,7 +15,8 @@ exports.getAllTodoListsForFolder = (req, res) => {
 
 exports.createTodoList = (req, res) => {
     const { title } = req.body;
-    const sqlQuery = "INSERT INTO todolist (title) VALUES (?)";
+
+    const sqlQuery = "INSERT INTO todoList (title) VALUES (?)";
 
     db.query(sqlQuery, [title], (err, result) => {
         if (err) {

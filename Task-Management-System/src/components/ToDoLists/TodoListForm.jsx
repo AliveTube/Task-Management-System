@@ -11,7 +11,7 @@ const TodoListForm = ({ folderId, addNewTodoList }) => {
       title: newListTitle,
       folderId: folderId
     };
-    axios.post('/api/todoLists', newTodoList)
+    axios.post('http://localhost:3000/api/todoLists', newTodoList)
       .then(response => {
         addNewTodoList(response.data);
         setNewListTitle("");

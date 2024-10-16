@@ -13,7 +13,7 @@ const {
 } = require('../controllers/taskController');
 
 router.get('/api/todoLists/:folderId', getAllTodoListsForFolder);
-router.post('/api', createTodoList);
+router.post('/api/todoLists', createTodoList);
 router.delete('/api/todoLists/:todoListId', deleteTodoList);
 
 router.get('/api/:uniqueId/tasks', getTasksForTodoList);

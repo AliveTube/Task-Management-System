@@ -23,10 +23,10 @@ const TodoLists = () => {
       });
   }, [folderId]);
 
-  const deleteTodoList = (id) => {
-    axios.delete(`http://localhost:3000/api/todoLists/${id}`)
+  const deleteTodoList = (uniqueId) => {
+    axios.delete(`http://localhost:3000/api/todoLists/${uniqueId}`)
       .then(() => {
-        setTodoLists(todoLists.filter(list => list.id !== id));
+        setTodoLists(todoLists.filter(list => list.uniqueId !== uniqueId));
       })
       .catch(error => {
         console.error('Error deleting the to-do list:', error);
@@ -48,7 +48,7 @@ const TodoLists = () => {
       <ul>
         {todoLists.map((list) => (
           <TodoListItem
-            key={list.id}
+            key={list.uniqueId}
             list={list}
             deleteTodoList={deleteTodoList}
           />
