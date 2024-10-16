@@ -66,11 +66,10 @@
     position: fixed;
     top: 34vh;
     right: 35vw;
-    height: 32vh;
-    width: 30vw;
+    max-width: 30vw;
     background-color: #ECD4D4;
     box-shadow: 0 0 5px #AF4C4C;
-    padding: 20px;
+    padding: 2rem;
     border-radius: 10px;
     border: 1px solid #e7a2a2;
     display: flex;
@@ -82,7 +81,7 @@
 }
 
 .DeleteCheck h5{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 2.2rem;
     font-weight: 700;
     color: #AF4C4C;

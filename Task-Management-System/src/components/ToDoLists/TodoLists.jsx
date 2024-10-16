@@ -27,12 +27,12 @@ export default function TodoLists() {
         setError('Error loading to-do lists');
       });
   }
-  
+
   useEffect(() => {
-    getTodoListFromDB();                                      
-    eventEmitter.on('updateTodoList', getTodoListFromDB);      
+    getTodoListFromDB();
+    eventEmitter.on('updateTodoList', getTodoListFromDB);
     return () => {
-      eventEmitter.off('updateTodoList', getTodoListFromDB); 
+      eventEmitter.off('updateTodoList', getTodoListFromDB);
     };
   }, [folderId]);
 

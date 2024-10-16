@@ -16,7 +16,7 @@ exports.getAllTodoListsForFolder = (req, res) => {
 exports.createTodoList = (req, res) => {
     const { title, folderId, startDate } = req.body;
 
-    const sqlQuery = 
+    const sqlQuery =
       `INSERT INTO todoList (title, folderId, startDate)
       VALUES (?, ?, ?)`
     ;
@@ -28,13 +28,14 @@ exports.createTodoList = (req, res) => {
         }
 
         res.status(201).json({
-            uniqueId: result.insertId, 
-            title, 
-            folderId, 
-            startDate 
+            uniqueId: result.insertId,
+            title,
+            folderId,
+            startDate
         });
     });
 };
+
 
 exports.deleteTodoList = (req, res) => {
     const todoListId = req.params.todoListId;

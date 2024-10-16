@@ -24,9 +24,9 @@ export default function TodoList({ todoList, openDeleteCheck }) {
   };
   let chosenColor = getRandomColor();
 
-  const navigateToTodoList = () => {
+  const navigateToTasks = () => {
     if (!updatingTitle) {
-      navigate(`/home/todolists/${todoList.uniqueId}`);
+      navigate(`/home/tasks/${todoList.uniqueId}`);
     }
   };
 
@@ -62,7 +62,7 @@ export default function TodoList({ todoList, openDeleteCheck }) {
         </div>
         <button className={styles.listButton}>
           <li>
-            <span className={styles.text} onClick={navigateToTodoList}>{updatingTitle ? editingTodoListTitle : todoList.title}</span>
+            <span className={styles.text} onClick={navigateToTasks}>{updatingTitle ? editingTodoListTitle : todoList.title}</span>
             <img src={editIcon} alt="edit" style={{ width: '2rem' }} onClick={() => { setUpdatingTitle(true) }} />
             <img src={binIcon} alt="bin" style={{ width: '2rem', marginLeft: '1.2rem' }} onClick={setTodoListforDelete} />
           </li>

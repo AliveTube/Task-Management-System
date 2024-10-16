@@ -1,9 +1,11 @@
 const db = require('../config/dbConnection');
 
-exports.getAllTasks = (req, res) => {
+exports.getTasksByToDoListId = (req, res) => {
     try {
-        db.query('SELECT * FROM tasks', (err, data) => {
+        const { toDoListId } = req.params;
+        db.query('SELECT * FROM tasks WHERE toDoListId = ?', [toDoListId], (err, data) => {
             if (err) return res.status(500).send('Server Error');
+            if (!data.length) return res.status(404).json({ message: 'Tasks not found' });
             res.json(data);
         });
     } catch (err) {
@@ -11,6 +13,20 @@ exports.getAllTasks = (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
+exports.getTasksByUserId = (req, res) => {
+    try {
+        const { uniqueId } = req.params;
+        db.query('SELECT * FROM tasks WHERE userId = ?', [uniqueId], (err, data) => {
+            if (err) return res.status(500).send('Server Error');
+            if (!data.length) return res.status(404).json({ message: 'Tasks not found' });
+            res.json(data);
+        });
+    } catch (err) {
+        console.error('Error fetching tasks:', err.message);
+        res.status(500).send('Server Error');
+    }
+}
 
 exports.getTaskById = (req, res) => {
     try {
@@ -25,7 +41,6 @@ exports.getTaskById = (req, res) => {
         res.status(500).send('Server Error');
     }
 };
-
 
 exports.updateTaskStatus = (req, res) => {
     try {
@@ -43,10 +58,11 @@ exports.updateTaskStatus = (req, res) => {
 
 exports.createTask = (req, res) => {
     try {
-        let { title, description, priority, startDate, deadline, status } = req.body;
+        const { title, description, priority, startDate, deadline, status } = req.body;
+        const { toDoListId } = req.params;
+        console.log(toDoListId);
 
         const userId = 1;
-        const toDoListId = 1;
 
         const convertToSQLDate = (date) => {
             const jsDate = new Date(date);
@@ -59,7 +75,6 @@ exports.createTask = (req, res) => {
         const sqlQuery = 'INSERT INTO tasks (title, description, priority, startDate, deadline, status, userId, toDoListId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         db.query(sqlQuery, [title, description, priority, startDateSQL, deadlineSQL, status, userId, toDoListId], (err, result) => {
             if (err) {
-                console.error('SQL Error:', err.message);  // Log the actual SQL error
                 return res.status(500).json({ message: 'Server Error' });
             }
             res.status(201).json({

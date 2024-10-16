@@ -16,11 +16,10 @@ const {
 router.get('/api/todoLists/:folderID', getAllTodoListsForFolder);
 router.post('/api/todoLists', createTodoList);
 router.delete('/api/todoLists/:todoListId', deleteTodoList);
+router.post('/api/editTodoList', editTodoList)
 
 router.get('/api/:uniqueId/tasks', getTasksForTodoList);
 router.post('/api/:uniqueId/tasks', addTaskToTodoList);
 
-
-router.post('/api/editTodoList', editTodoList)
 
 module.exports = router;
