@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     {path: 'home', element: <Home/>, children:[
       {index: true, element: <Folders />},
       {path: 'addTask', element: <CreateTask />},
-      {path: 'updateTask', element: <UpdateTask></UpdateTask>},
+      {path: 'updateTask/:uniqueId', element: <UpdateTask></UpdateTask>},
       {path: 'tasks', element: <Tasks />},
       {path: 'tasks/:uniqueId', element:<TaskDetails/>},
       {path: 'todolists/:folderId', element:<TodoLists/>},

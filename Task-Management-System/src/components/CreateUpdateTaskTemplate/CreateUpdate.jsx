@@ -5,6 +5,8 @@ import CreateTask from './CreateUpdate.module.css'; // Import the CSS file
 //in the case of craete task will be empty 
 //in the case of update task will be the old task that we updating 
 export default function CreateUpdate({handleSubmit, Task = {}}){ 
+    let isUpdate;
+    Object.keys(Task).length === 0 ? isUpdate = false : isUpdate = true;
 
     const getTodayDate = () => {
         const today = new Date();
@@ -54,7 +56,7 @@ export default function CreateUpdate({handleSubmit, Task = {}}){
                             placeholder={newTask.current.title}
                             // value='s'
                             onChange={handleInputChange}
-                            required
+                            required={!isUpdate}
                         />
                     </div>
                     <div className={CreateTask['form-group']}>
@@ -64,7 +66,7 @@ export default function CreateUpdate({handleSubmit, Task = {}}){
                             placeholder={newTask.current.description}
                             // value={newTask.current.description}
                             onChange={handleInputChange}
-                            required
+                            required={!isUpdate}
                         ></textarea>
                     </div>
                     <div className={CreateTask['Deadline_Priority']}>
