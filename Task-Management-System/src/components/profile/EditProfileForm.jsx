@@ -32,7 +32,7 @@ const EditProfileForm = ({ profile, handleInputChange, updateProfile, loading })
                         required
                     />
                 </div>
-                <div className={Profile['form-group']}>
+                {/* <div className={Profile['form-group']}>
                     <label htmlFor="phone">Phone</label>
                     <input
                         type="tel"
@@ -54,7 +54,7 @@ const EditProfileForm = ({ profile, handleInputChange, updateProfile, loading })
                         className={Profile['edit-profile-textarea']}
                         onChange={handleInputChange}
                     ></textarea>
-                </div>
+                </div> */}
                 <button type="submit" className={Profile['submit-button']} disabled={loading}>
                     {loading ? 'Updating...' : 'Update Profile'}
                 </button>
