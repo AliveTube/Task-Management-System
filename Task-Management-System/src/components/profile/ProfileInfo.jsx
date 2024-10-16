@@ -2,7 +2,6 @@ import React from 'react';
 import ProfileCSS from './Profile.module.css';
 
 const ProfileInfo = ({ profile }) => {
-    // const altText = profile.name ? profile.name.charAt(0) : 'P'; // First letter of the name or default 'P'
 
     return (
         <div className={ProfileCSS['profileInfoContainer']}>
@@ -16,18 +15,6 @@ const ProfileInfo = ({ profile }) => {
                 <p className={ProfileCSS['profile-info']}>{profile.email || 'No email available'}</p>
                 <p className={ProfileCSS['profile-info']}>{profile.phoneNumber || 'No phone number available'}</p>
             </div>
-
-            {/* {profile.profilePicture ? (
-                <img
-                    src={profile.profilePicture}
-                    alt={altText}
-                    className={Profile['profile-picture']}
-                />
-            ) : (
-                <div className={Profile['profile-picture-placeholder']}>
-                    {altText}
-                </div>
-            )} */}
         </div>
     );
 };

@@ -6,55 +6,10 @@ import Profile from './Profile.module.css';
 import { useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 
-const ProfileComponent = ({ userId }) => {
-    const [profile, setProfile] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        profilePicture: '',
-        bio: '',
-    });
+const ProfileComponent = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`/api/profile/${userId}`)
-            .then(response => {
-                setProfile(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching the profile', error);
-                setError('Failed to fetch profile data.');
-                setLoading(false);
-            });
-    }, [userId]);
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setProfile((prevProfile) => ({
-            ...prevProfile,
-            [name]: value,
-        }));
-    };
-
-    const updateProfile = () => {
-        setLoading(true);
-        axios.put(`/api/profile/${userId}`, profile)
-            .then(() => {
-                setSuccess('Profile updated successfully!');
-                setError(null);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error updating profile', error);
-                setError('Failed to update profile.');
-                setSuccess(null);
-                setLoading(false);
-            });
-    };
 
     const token = useSelector((state) => state.TokenInUse);
     let userData;
@@ -71,14 +26,6 @@ const ProfileComponent = ({ userId }) => {
 
             {/* Display profile info */}
             <ProfileInfo profile={userData} />
-
-            {/* Edit profile form */}
-            {/* <EditProfileForm 
-                profile={profile} 
-                handleInputChange={handleInputChange} 
-                updateProfile={updateProfile}
-                loading={loading}
-            /> */}
         </div>
     );
 };
