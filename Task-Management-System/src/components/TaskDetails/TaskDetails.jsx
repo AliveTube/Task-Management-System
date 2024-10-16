@@ -49,6 +49,10 @@ export default function TaskDetails() {
         }
     };
 
+    const navigateToUpdate = () => {
+        navigate(`/home/updateTask/${uniqueId}`);
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -65,7 +69,7 @@ export default function TaskDetails() {
                 <h1 className={TDCSS.Title}>{task.title}</h1>
                 <div className={TDCSS.HeaderRight}>
                     <button className={TDCSS.button}>Mark as Done</button>
-                    <img src={editIcon} alt="edit" style={{ width: '2rem' }} />
+                    <img onClick = {navigateToUpdate} className = {TDCSS.binIcon} src={editIcon} alt="edit" style={{ width: '2rem' }} />
                     <img onClick = {handleTaskDelete} className = {TDCSS.binIcon} src={binIcon} alt="bin" style={{ width: '2rem' }} />
                 </div>
             </div>
