@@ -2,7 +2,7 @@ const db = require("../config/dbConnection");
 
 exports.getAllTodoListsForFolder = (req, res) => {
     const folderId = req.params.folderId;
-    const sqlQuery = "SELECT * FROM ToDoList WHERE folderId = ?";
+    const sqlQuery = "SELECT * FROM todolist WHERE folderId = ?";
 
     db.query(sqlQuery, [folderId], (err, rows) => {
         if (err) {
@@ -15,7 +15,7 @@ exports.getAllTodoListsForFolder = (req, res) => {
 
 exports.createTodoList = (req, res) => {
     const { title } = req.body;
-    const sqlQuery = "INSERT INTO ToDoList (title) VALUES (?)";
+    const sqlQuery = "INSERT INTO todolist (title) VALUES (?)";
 
     db.query(sqlQuery, [title], (err, result) => {
         if (err) {
@@ -28,7 +28,7 @@ exports.createTodoList = (req, res) => {
 
 exports.deleteTodoList = (req, res) => {
     const todoListId = req.params.todoListId;
-    const sqlQuery = "DELETE FROM ToDoList WHERE uniqueId = ?";
+    const sqlQuery = "DELETE FROM todolist WHERE uniqueId = ?";
 
     db.query(sqlQuery, [todoListId], (err, result) => {
         if (err) {
