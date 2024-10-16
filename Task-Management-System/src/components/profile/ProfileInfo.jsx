@@ -6,9 +6,9 @@ const ProfileInfo = ({ profile }) => {
 
     return (
         <div className={Profile['profile-info-container']}>
-            <h1 className={Profile['profile-header']}>{profile.name || 'Your Profile'}</h1>
+            <h1 className={Profile['profile-header']}>{profile.username || 'Your Profile'}</h1>
             <p className={Profile['profile-info']}>Email: {profile.email || 'No email available'}</p>
-            <p className={Profile['profile-info']}>Phone: {profile.phone || 'No phone number available'}</p>
+            <p className={Profile['profile-info']}>Phone: {profile.phoneNumber || 'No phone number available'}</p>
 
             {/* {profile.profilePicture ? (
                 <img

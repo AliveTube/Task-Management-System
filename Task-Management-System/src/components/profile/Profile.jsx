@@ -3,6 +3,8 @@ import axios from 'axios';
 import ProfileInfo from './ProfileInfo';
 import EditProfileForm from './EditProfileForm';
 import Profile from './Profile.module.css';
+import { useSelector } from 'react-redux';
+import { jwtDecode } from 'jwt-decode';
 
 const ProfileComponent = ({ userId }) => {
     const [profile, setProfile] = useState({
@@ -54,6 +56,13 @@ const ProfileComponent = ({ userId }) => {
             });
     };
 
+    const token = useSelector((state) => state.TokenInUse);
+    let userData;
+    if (token.length) {
+
+        userData = jwtDecode(token);
+    }
+
     return (
         <div className={Profile['profile-container']}>
             {loading && <p>Loading...</p>}
@@ -61,15 +70,15 @@ const ProfileComponent = ({ userId }) => {
             {success && <p className={Profile['success-message']}>{success}</p>}
 
             {/* Display profile info */}
-            <ProfileInfo profile={profile} />
+            <ProfileInfo profile={userData} />
 
             {/* Edit profile form */}
-            <EditProfileForm 
+            {/* <EditProfileForm 
                 profile={profile} 
                 handleInputChange={handleInputChange} 
                 updateProfile={updateProfile}
                 loading={loading}
-            />
+            /> */}
         </div>
     );
 };
