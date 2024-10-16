@@ -40,6 +40,7 @@
   align-items: center;
   justify-content: center;
   color: white;
+  box-shadow: 0rem 0rem 1rem black;
 }
 
 .ProfilePic h2{
@@ -55,6 +56,8 @@
   align-items: end;
   justify-content: center;
   border-radius: 1rem;
+  background-image: url("../../Images/Profile-BG-Cover.jpg");
+  background-size: 40rem;
 }
 
 .profileText{
