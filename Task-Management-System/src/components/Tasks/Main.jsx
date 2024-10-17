@@ -35,17 +35,17 @@ const Main = ({ activeTasks, toggleTaskStatus }) => {
       });
     }
   };
-  
-  const handleBlurDropdown = ()=>{
-    setTimeout(()=>{
+
+  const handleBlurDropdown = () => {
+    setTimeout(() => {
       setShowDropdown(false);
-    },200)
+    }, 200)
   }
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1>{Path.FolderName}<span style={{color:"#4CAF4F", fontWeight:"700"}}>{' > '}</span>{Path.TodoListName}</h1>
+        <h1>{Path.TodoListName? Path.FolderName: "Tasks"}<span style={{ color: "#4CAF4F", fontWeight: "700" }}>{Path.TodoListName? ' > ' : ''}</span>{Path.TodoListName}</h1>
         <div className={styles.buttonsContainer}>
           <button className={styles.filterButton} onClick={toggleDropdown} onBlur={handleBlurDropdown}>
             <AiFillFilter />
