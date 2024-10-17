@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { eventEmitter } from './eventEmitter';
 
-export default function CreateFolder({ creatingFolder, closeCreateFolder}) {
+export default function CreateFolder({ creatingFolder, closeCreateFolder }) {
 
   const InputElem = useRef("");
   const token = useSelector((state) => state.TokenInUse);
@@ -37,6 +37,12 @@ export default function CreateFolder({ creatingFolder, closeCreateFolder}) {
     closeCreateFolder();
   }
 
+  const handleEnterPressed = (e) => {
+    if (e.key === 'Enter') {
+      handleCreateFolder();
+    }
+  }
+    
   return (
     creatingFolder && (
       <div className={styles.item} style={{ borderColor: chosenColor /*, border:`3px solid ${chosenColor}` */ }}>
@@ -45,7 +51,7 @@ export default function CreateFolder({ creatingFolder, closeCreateFolder}) {
         </div>
         <button className={styles.listButton}>
           <li>
-            <input type='text' name='createdFolderName' id='createdFolderName' ref={InputElem}
+            <input type='text' name='createdFolderName' id='createdFolderName' ref={InputElem} onKeyDown={handleEnterPressed}
               className={styles.createFolder} placeholder='Enter folder name' autoFocus></input>
             <div alt="bin" style={{ width: '3rem', marginRight: '1rem' }}>
               <IoAddCircle style={{ color: chosenColor, fontSize: '3rem' }} onClick={handleCreateFolder} />
@@ -55,4 +61,4 @@ export default function CreateFolder({ creatingFolder, closeCreateFolder}) {
       </div>
     )
   );
-};
+}

@@ -42,6 +42,12 @@ export default function CreateTodoList({ creatingTodoList, closeCreateTodoList, 
     closeCreateTodoList();
   }
 
+  const handleEnterPressed = (e) => {
+    if (e.key === 'Enter') {
+      handleCreateTodoList();
+    }
+  }
+
   return (
     creatingTodoList && (
       <div className={styles.item} style={{ borderColor: chosenColor /*, border:`3px solid ${chosenColor}` */ }}>
@@ -50,7 +56,7 @@ export default function CreateTodoList({ creatingTodoList, closeCreateTodoList, 
         </div>
         <button className={styles.listButton}>
           <li>
-            <input type='text' name='createdTodoListName' id='createdTodoListName' ref={InputElem}
+            <input type='text' name='createdTodoListName' id='createdTodoListName' ref={InputElem} onKeyDown={handleEnterPressed}
               className={styles.createTodoList} placeholder='Enter Todo-List name' autoFocus></input>
             <div alt="bin" style={{ width: '3rem', marginRight: '1rem' }}>
               <IoAddCircle style={{ color: chosenColor, fontSize: '3rem' }} onClick={handleCreateTodoList} />

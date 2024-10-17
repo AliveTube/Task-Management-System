@@ -21,11 +21,12 @@
     background-color: #4CAF4F;
     border: #449e47 solid 1px;
     border-radius: 8px;
-    padding: 5px;
-    width: 100px;
+    padding: 0.5rem;
+    width: 8rem;
     margin-top: 5px;
     margin-left: 10px;
     font-weight: bold;
+    color: white;
 }
 
 

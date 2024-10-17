@@ -46,7 +46,7 @@ export default function TodoList({ todoList, openDeleteCheck }) {
     }
   }
   let editingTodoListTitle =
-    <input type='text' name='EditTodoListName' id='EditTodoListName' onKeyDown={handleEditTodoList}
+    <input type='text' name='EditTodoListName' id='EditTodoListName' onKeyDown={handleEditTodoList} onBlur={()=>{setUpdatingTitle(false)}}
       className={styles.createTodoList} placeholder={todoList.title} autoFocus></input>;
 
   const setTodoListforDelete = ()=>{

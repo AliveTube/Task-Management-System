@@ -33,13 +33,19 @@ const Main = ({ activeTasks, toggleTaskStatus }) => {
       });
     }
   };
+  
+  const handleBlurDropdown = ()=>{
+    setTimeout(()=>{
+      setShowDropdown(false);
+    },200)
+  }
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         <h1>Tasks</h1>
         <div className={styles.buttonsContainer}>
-          <button className={styles.filterButton} onClick={toggleDropdown}>
+          <button className={styles.filterButton} onClick={toggleDropdown} onBlur={handleBlurDropdown}>
             <AiFillFilter />
           </button>
           {showDropdown && (
