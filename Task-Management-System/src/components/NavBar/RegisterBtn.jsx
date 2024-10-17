@@ -1,15 +1,33 @@
+import { useSelector } from 'react-redux';
 import NavBarCSS from './NavBar.module.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function RegisterBtn(){
+export default function RegisterBtn() {
+    const token = useSelector((state) => state.TokenInUse);
+    let IS_SIGNED_IN = token.length;
+
     const navigate = useNavigate();
 
-    const navigateToRegister = () => {
-        navigate('/register');
+    let ButtonContent;
+    if (IS_SIGNED_IN) {
+        ButtonContent="Go to Home"
     }
-    return(
+    else {
+        ButtonContent="Register Now"
+    }
+
+    const navigateToRegister = () => {
+        if (IS_SIGNED_IN) {
+            navigate('/home');
+        }
+        else {
+            navigate('/register');
+        }
+    }
+
+    return (
         <>
-            <button className={NavBarCSS.Register} onClick={navigateToRegister}>Register Now</button>
+            <button className={NavBarCSS.Register} onClick={navigateToRegister}>{ButtonContent}</button>
         </>
     )
 }

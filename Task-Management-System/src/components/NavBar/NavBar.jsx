@@ -32,7 +32,12 @@ export default function NavBar() {
         const decodedPayload = jwtDecode(token);
         navBarBtns =
         <>
-            <Link to='/home' className={NavBarCSS.Logo}>Task Manager</Link>
+            <Link to='/' className={NavBarCSS.Logo}>Task Manager</Link>
+            <ul className={NavBarCSS.NavbarList}>
+                <li><Link to='/home' >Home</Link></li>
+                <li><Link to='/about' >About</Link></li>
+                <li><Link to='/home/profile' >Profile</Link></li>
+            </ul>
             <div className={NavBarCSS.SignedInBtns}>
                 <span onClick={handleSignOut} className={NavBarCSS.SignOut}>Sign Out</span>
                 <div className={NavBarCSS.Profile} onClick={navigateToProfile}>
