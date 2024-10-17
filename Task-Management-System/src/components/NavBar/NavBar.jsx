@@ -22,30 +22,39 @@ export default function NavBar() {
         navigate('/');
     }
 
+    const navigateToProfile = () => {
+        navigate('/home/profile')
+    }
+
     if (IS_SIGNED_IN) {
         const decodedPayload = jwtDecode(token);
         navBarBtns =
+        <>
+            <Link to='/home' className={NavBarCSS.Logo}>Task Manager</Link>
             <div className={NavBarCSS.SignedInBtns}>
                 <span onClick={handleSignOut} className={NavBarCSS.SignOut}>Sign Out</span>
-                <div className={NavBarCSS.Profile}>
-                    <Link to="/home">{decodedPayload.username.charAt(0)}</Link>
+                <div className={NavBarCSS.Profile} onClick={navigateToProfile}>
+                    <h2>{decodedPayload.username.charAt(0)}</h2>
                 </div>
-            </div>;
+            </div>
+        </>
     }
     else {
-        navBarBtns =
+        navBarBtns = 
+        <>
+            <Link to='/' className={NavBarCSS.Logo}>Task Manager</Link>
             <div className={NavBarCSS.SignedOutBtns}>
                 <Link to="/about">About Us</Link>
                 <RegisterBtn></RegisterBtn>
                 <button className={NavBarCSS.Login} onClick={navigateToLogin}>Login</button>
-            </div>;
+            </div>
+        </>
     }
 
 
     return (
         <>
             <div className={NavBarCSS.NavBar}>
-                <Link to='/' className={NavBarCSS.Logo}>Task Manager</Link>
                 {navBarBtns}
             </div>
 

@@ -43,7 +43,6 @@ exports.createTask = (req, res) => {
     try {
         const { title, description, priority, startDate, deadline, status, userId} = req.body;
         const { toDoListId } = req.params;
-        console.log(req.body);
 
         const convertToSQLDate = (date) => {
             const jsDate = new Date(date);
@@ -76,7 +75,7 @@ exports.createTask = (req, res) => {
 
 exports.updateTask = (req, res) => {
     try {
-        const { uniqueId, title, description, priority, startDate, deadline, status } = req.body.task; // Accessing req.body.task
+        const { uniqueId, title, description, priority, startDate, deadline, status } = req.body.task;
         db.query('UPDATE tasks SET title = ?, description = ?, priority = ?, startDate = ?, deadline = ?, status = ? WHERE uniqueId = ?', 
         [title, description, priority, startDate, deadline, status, uniqueId], (err, result) => {
             if (err) return res.status(500).send('Server Error');

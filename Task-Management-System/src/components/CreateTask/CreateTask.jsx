@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CreateUpdate from '../CreateUpdateTaskTemplate/CreateUpdate';
 import { useOutletContext } from 'react-router-dom';
 
-const CreateTask = () => {
+const CreateTask = ( {} ) => {
     const { updateTasks } = useOutletContext();
     const navigate = useNavigate();
     const { uniqueId } = useParams();
@@ -24,7 +24,7 @@ const CreateTask = () => {
         }
     };
 
-    return <CreateUpdate handleSubmit={handleSubmit} />;
+    return <CreateUpdate handleSubmit={handleSubmit} toDoListId = {uniqueId} />;
 };
 
 export default CreateTask;
