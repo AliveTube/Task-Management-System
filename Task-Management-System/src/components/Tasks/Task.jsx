@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './Task.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setPath } from '../../ReduxSlices/PathSlice';
 
 const Task = ({ task, toggleTaskStatus }) => {
+
+  const dispatch = useDispatch();
+
   const getRandomColor = () => {
     const colorOptions = [
       "#4CAF4F", "#4CAF97", "#4CAF27",
@@ -17,6 +22,7 @@ const Task = ({ task, toggleTaskStatus }) => {
   const navigate = useNavigate();
 
   const navigateToTaskDetails = () => {
+    dispatch(setPath({type:"TaskName", value:task.title}));
     navigate(`/home/taskDetails/${task.uniqueId}`);
   };
 

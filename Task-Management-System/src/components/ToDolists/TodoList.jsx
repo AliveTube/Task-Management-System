@@ -6,11 +6,14 @@ import { IoFolderOpen } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { eventEmitter } from './eventEmitter';
+import { useDispatch } from 'react-redux';
+import { setPath } from '../../ReduxSlices/PathSlice';
 
 export default function TodoList({ todoList, openDeleteCheck }) {
 
   let [updatingTitle, setUpdatingTitle] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const getRandomColor = () => {
     const colorOptions = [
@@ -26,6 +29,7 @@ export default function TodoList({ todoList, openDeleteCheck }) {
 
   const navigateToTasks = () => {
     if (!updatingTitle) {
+      dispatch(setPath({type:"TodoListName", value:todoList.title}));
       navigate(`/home/tasks/${todoList.uniqueId}`);
     }
   };

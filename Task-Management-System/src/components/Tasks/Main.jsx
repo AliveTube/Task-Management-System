@@ -4,12 +4,14 @@ import Task from './Task';
 import { AiFillFilter } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Main = ({ activeTasks, toggleTaskStatus }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [filterType, setFilterType] = useState('');
   const { uniqueId } = useParams();
+  const Path = useSelector((state) => state.Path);
 
   const navigateToAddTask = () => {
     console.log('toDoListId:', uniqueId);
@@ -43,7 +45,7 @@ const Main = ({ activeTasks, toggleTaskStatus }) => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1>Tasks</h1>
+        <h1>{Path.FolderName}<span style={{color:"#4CAF4F", fontWeight:"700"}}>{' > '}</span>{Path.TodoListName}</h1>
         <div className={styles.buttonsContainer}>
           <button className={styles.filterButton} onClick={toggleDropdown} onBlur={handleBlurDropdown}>
             <AiFillFilter />
