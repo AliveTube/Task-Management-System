@@ -23,6 +23,7 @@ export default function TaskDetails() {
         const fetchTask = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/taskDetails/${uniqueId}`);
+                console.log(response.data);
                 setTask(response.data);
             } catch (error) {
                 console.error('Error fetching task:', error);
@@ -57,12 +58,16 @@ export default function TaskDetails() {
 
     const formattedDate = new Date(task.deadline).toLocaleDateString();
 
+    const handleMarkAsDone = () => {
+        
+    }
+
     return (
         <div className={TDCSS.MainContainer}>
             <div className={TDCSS.Header}>
                 <h1 className={TDCSS.Title}>{task.title}</h1>
                 <div className={TDCSS.HeaderRight}>
-                    <button className={TDCSS.button}>Mark as Done</button>
+                    <button className={TDCSS.button} onClick={handleMarkAsDone}>Mark as Done</button>
                     <img onClick={navigateToUpdate} className={TDCSS.binIcon} src={editIcon} alt="edit" style={{ width: '2rem' }} />
                     <img onClick={handleTaskDelete} className={TDCSS.binIcon} src={binIcon} alt="bin" style={{ width: '2rem' }} />
                 </div>
@@ -70,7 +75,7 @@ export default function TaskDetails() {
             <h3 className={TDCSS.Deadline}>Due {formattedDate}</h3>
             <p className={TDCSS.description}>{task.description}</p>
             <div className={choosePriorityClass(task.priority)}>{task.priority} Priority</div>
-            <button className={TDCSS.button} onClick={navigateToTasks} style={{ marginTop: '1rem' }}>Back</button>
+            <button className={TDCSS.button} onClick={navigateToTasks} style={{ margin: '1.5rem 0'}}>Back</button>
         </div>
     );
 }

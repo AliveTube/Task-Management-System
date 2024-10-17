@@ -46,7 +46,7 @@ export default function Folder({ folder, openDeleteCheck }) {
     }
   }
   let editingFolderTitle =
-    <input type='text' name='EditFolderName' id='EditFolderName' onKeyDown={handleEditFolder}
+    <input type='text' name='EditFolderName' id='EditFolderName' onKeyDown={handleEditFolder} onBlur={()=>{setUpdatingTitle(false)}}
       className={styles.createFolder} placeholder={folder.title} autoFocus></input>;
 
   const setFolderforDelete = ()=>{

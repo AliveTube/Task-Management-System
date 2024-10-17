@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Task = ({ task, toggleTaskStatus }) => {
   const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
+    const colorOptions = [
+      "#4CAF4F", "#4CAF97", "#4CAF27",
+      "#3E9B44", "#65B861", "#2F8D38",
+      "#AF4F4C", "#4F4CAF", "#AFAF4F",
+      "#AF4CAF", "#4CAF8C", "#68AF4C", "#AF4C68"
+    ];
+    let color = colorOptions[Math.floor(Math.random() * 13)];
     return color;
   };
 

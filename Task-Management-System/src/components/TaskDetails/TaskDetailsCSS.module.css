@@ -33,10 +33,15 @@
 
 
 .button{
-
     background-color: #4CAF4F;
-    color: #F6F6F6;
-    width:fit-content;
+    border: #449e47 solid 1px;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 9rem;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: white;
 }
 
 .button:hover{
