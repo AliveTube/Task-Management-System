@@ -66,6 +66,7 @@ export default function CreateUpdate({handleSubmit, Task = {}, toDoListId}){
                             placeholder={newTask.current.title}
                             // value='s'
                             onChange={handleInputChange}
+                            autoFocus
                             required={!isUpdate}
                         />
                     </div>

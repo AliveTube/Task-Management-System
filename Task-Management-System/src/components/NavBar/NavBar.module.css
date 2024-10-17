@@ -1,17 +1,44 @@
 .NavBar{
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #F6F6F6;
     margin: 0px;
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .Logo{
     margin: 0px;
+    margin-right: 2rem;
     color: #4D4D4D;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.875rem;
+    text-shadow: 0 0.8px 0px #363636;
+}
+
+.NavbarList{
+    list-style: none;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    height: 3.5rem;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    padding-top: 0.3rem;
+}
+
+.NavbarList li a{
+    margin: 0px 1.9rem;
+    text-decoration: none;
+    color: #4CAF4F;
+    /* text-shadow: 0 0.4px 0px #4D4D4D; */
+}
+
+.NavbarList li a:hover{
+    color: #378d3a;
 }
 
 .SignedOutBtns{
@@ -113,7 +140,7 @@
 .SignOut {
     margin: 0px 1.1rem;
     color: #e74c3c; /* Bright red */
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
     transition: color 0.3s ease;
