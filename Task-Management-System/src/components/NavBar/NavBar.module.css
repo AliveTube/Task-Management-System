@@ -97,6 +97,9 @@
     color: white;
     cursor: pointer;
 }
+.Profile h2{
+    margin: 0;
+}
 
 .SignedInBtns a{
     padding: 0px;
