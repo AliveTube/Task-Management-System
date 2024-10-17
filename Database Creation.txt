@@ -1,0 +1,57 @@
+-- Test Account Information
+-- You can use the following test account to log in:
+-- Email: Test1@gmail.com
+-- Password: Test1@gmail.com
+
+-- Create a new database named 'mysql2'
+CREATE DATABASE mysql2;
+
+-- Select the database 'mysql2' for use
+USE mysql2;
+
+-- Create a 'Users' table to store user information
+CREATE TABLE Users (
+    uniqueId INT PRIMARY KEY AUTO_INCREMENT, -- Unique identifier for each user
+    username VARCHAR(100) NOT NULL,          -- Username of the user
+    email VARCHAR(100) NOT NULL UNIQUE,      -- Email of the user (must be unique)
+    password VARCHAR(100) NOT NULL,          -- Password of the user
+    phoneNumber VARCHAR(15)                   -- Phone number of the user (optional)
+);
+
+-- Create a 'Folders' table to store folders created by users
+CREATE TABLE Folders (
+    uniqueId INT PRIMARY KEY AUTO_INCREMENT, -- Unique identifier for each folder
+    title VARCHAR(100) NOT NULL,             -- Title of the folder
+    startDate DATETIME NOT NULL,              -- Date and time when the folder was created
+    userId INT,                               -- Reference to the user who created the folder
+    FOREIGN KEY (userId) REFERENCES Users(uniqueId) ON DELETE CASCADE -- If user is deleted, delete their folders
+);
+
+-- Create a 'ToDoList' table to store to-do lists under each folder
+CREATE TABLE ToDoList (
+    uniqueId INT PRIMARY KEY AUTO_INCREMENT,  -- Unique identifier for each to-do list
+    title VARCHAR(100) NOT NULL,              -- Title of the to-do list
+    startDate DATETIME NOT NULL,              -- Date and time when the to-do list was created
+    folderId INT,                             -- Reference to the folder containing the to-do list
+    FOREIGN KEY (folderId) REFERENCES Folders(uniqueId) ON DELETE CASCADE -- If folder is deleted, delete its to-do lists
+);
+
+-- Create a 'Tasks' table to store tasks under each to-do list
+CREATE TABLE Tasks (
+    uniqueId INT PRIMARY KEY AUTO_INCREMENT,  -- Unique identifier for each task
+    title VARCHAR(100) NOT NULL,              -- Title of the task
+    description TEXT,                         -- Description of the task (optional)
+    priority ENUM('Low', 'Medium', 'High') NOT NULL, -- Priority level of the task
+    startDate DATETIME NOT NULL,              -- Date and time when the task starts
+    deadline DATETIME NOT NULL,               -- Deadline for the task
+    status ENUM('Pending', 'InProgress', 'Completed') NOT NULL, -- Current status of the task
+    userId INT,                               -- Reference to the user who created the task
+    toDoListId INT,                           -- Reference to the to-do list containing the task
+    FOREIGN KEY (userId) REFERENCES Users(uniqueId) ON DELETE CASCADE, -- If user is deleted, delete their tasks
+    FOREIGN KEY (toDoListId) REFERENCES ToDoList(uniqueId) ON DELETE CASCADE -- If to-do list is deleted, delete its tasks
+);
+
+-- Insert test users into the Users table
+INSERT INTO Users (username, email, password, phoneNumber)
+VALUES 
+("Ahmed", "Test1@gmail.com", "$2a$07$VX3Qd757YJKqlzisA7RrvuV9k.FkjrD2mBnVXaXVVpITwcixETCYy", "+201234567890")
