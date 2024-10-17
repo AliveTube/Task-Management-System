@@ -12,10 +12,10 @@ function choosePriorityClass(priority) {
     else return TDCSS.LowPriority;
 }
 
-export default function TaskDetails({ }) {
+export default function TaskDetails() {
     const [task, setTask] = useState(null);
     const { updateTasks } = useOutletContext();
-    const { uniqueId } = useParams();
+    const { uniqueId } = useParams(); // get uniqueId from params
 
     const navigate = useNavigate();
 
@@ -26,22 +26,22 @@ export default function TaskDetails({ }) {
                 setTask(response.data);
             } catch (error) {
                 console.error('Error fetching task:', error);
-            } finally {
-                setLoading(false);
             }
         };
         fetchTask();
     }, [uniqueId]);
 
     const navigateToTasks = () => {
-        navigate(`/home/tasks/${task.toDoListId}`);
+        if (task) {
+            navigate(`/home/tasks/${task.toDoListId}`);
+        }
     };
 
-    const handleTaskDelete = async (uniqueId) => {
+    const handleTaskDelete = async () => { // No need for parameter here
         try {
-            await axios.delete(`http://localhost:3000/api/tasks/${task.uniqueId}`);
-            
+            await axios.delete(`http://localhost:3000/api/tasks/${uniqueId}`);
             updateTasks();
+            navigateToTasks();
         } catch (error) {
             console.error('Error deleting task:', error);
         }
@@ -63,8 +63,8 @@ export default function TaskDetails({ }) {
                 <h1 className={TDCSS.Title}>{task.title}</h1>
                 <div className={TDCSS.HeaderRight}>
                     <button className={TDCSS.button}>Mark as Done</button>
-                    <img onClick = {navigateToUpdate} className = {TDCSS.binIcon} src={editIcon} alt="edit" style={{ width: '2rem' }} />
-                    <img onClick = {handleTaskDelete} className = {TDCSS.binIcon} src={binIcon} alt="bin" style={{ width: '2rem' }} />
+                    <img onClick={navigateToUpdate} className={TDCSS.binIcon} src={editIcon} alt="edit" style={{ width: '2rem' }} />
+                    <img onClick={handleTaskDelete} className={TDCSS.binIcon} src={binIcon} alt="bin" style={{ width: '2rem' }} />
                 </div>
             </div>
             <h3 className={TDCSS.Deadline}>Due {formattedDate}</h3>

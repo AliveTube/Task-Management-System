@@ -1,12 +1,21 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateTask from './CreateUpdate.module.css'; // Import the CSS file
+import { useSelector } from 'react-redux';
+import {jwtDecode} from 'jwt-decode';
 
-//in the case of craete task will be empty 
-//in the case of update task will be the old task that we updating 
-export default function CreateUpdate({handleSubmit, Task = {}}){ 
+//in the case of craete task will be empty
+//in the case of update task will be the old task that we updating
+export default function CreateUpdate({handleSubmit, Task = {}}){
     let isUpdate;
     Object.keys(Task).length === 0 ? isUpdate = false : isUpdate = true;
+
+    const token = useSelector((state) => state.TokenInUse);
+    let userData;
+    if (token.length) {
+        userData = jwtDecode(token);
+    }
+    const userId = userData.uniqueId;
 
     const getTodayDate = () => {
         const today = new Date();
@@ -24,6 +33,7 @@ export default function CreateUpdate({handleSubmit, Task = {}}){
             startDate: getTodayDate(),
             deadline: '',
             status: 'Pending',
+            userId: userId
         }
         : Task
     );

@@ -5,12 +5,14 @@ import { useState } from 'react';
 import axios from 'axios';
 import { eventEmitter } from './eventEmitter';
 import TodoList from './TodoList';
+import { useOutletContext } from 'react-router-dom';
 
 export default function TodoListMain({ todoLists, setTodoLists, folderId }) {
 
   let [creatingTodoList, setCreatingTodoList] = useState(false);
   let [deleteCheck, setDeleteCheck] = useState(false);
   let [TodoListToBeDeleted, setTodoListToBeDeleted] = useState(NaN);
+  let { updateTasks } = useOutletContext();
 
   const openCreateTodoList = () => {
     setCreatingTodoList(true);
@@ -40,6 +42,7 @@ export default function TodoListMain({ todoLists, setTodoLists, folderId }) {
       });
     setTodoListToBeDeleted(NaN);
     setDeleteCheck(false);
+    updateTasks();
   }
 
   return <>

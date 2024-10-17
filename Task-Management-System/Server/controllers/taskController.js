@@ -5,7 +5,6 @@ exports.getTasksByToDoListId = (req, res) => {
         const { toDoListId } = req.params;
         db.query('SELECT * FROM tasks WHERE toDoListId = ?', [toDoListId], (err, data) => {
             if (err) return res.status(500).send('Server Error');
-            if (!data.length) return res.status(404).json({ message: 'Tasks not found' });
             res.json(data);
         });
     } catch (err) {
@@ -19,7 +18,6 @@ exports.getTasksByUserId = (req, res) => {
         const { uniqueId } = req.params;
         db.query('SELECT * FROM tasks WHERE userId = ?', [uniqueId], (err, data) => {
             if (err) return res.status(500).send('Server Error');
-            if (!data.length) return res.status(404).json({ message: 'Tasks not found' });
             res.json(data);
         });
     } catch (err) {
@@ -33,7 +31,6 @@ exports.getTaskById = (req, res) => {
         const { uniqueId } = req.params;
         db.query('SELECT * FROM tasks WHERE uniqueId = ?', [uniqueId], (err, data) => {
             if (err) return res.status(500).send('Server Error');
-            if (!data.length) return res.status(404).json({ message: 'Task not found' });
             res.json(data[0]);
         });
     } catch (err) {
@@ -42,27 +39,11 @@ exports.getTaskById = (req, res) => {
     }
 };
 
-exports.updateTaskStatus = (req, res) => {
-    try {
-        const { uniqueId } = req.params;
-        const { status } = req.body;
-        db.query('UPDATE tasks SET status = ? WHERE uniqueId = ?', [status, uniqueId], (err) => {
-            if (err) return res.status(500).send('Server Error');
-            res.status(200).send('Task status updated successfully');
-        });
-    } catch (err) {
-        console.error('Error updating task status:', err.message);
-        res.status(500).send('Server Error');
-    }
-};
-
 exports.createTask = (req, res) => {
     try {
-        const { title, description, priority, startDate, deadline, status } = req.body;
+        const { title, description, priority, startDate, deadline, status, userId} = req.body;
         const { toDoListId } = req.params;
-        console.log(toDoListId);
-
-        const userId = 1;
+        console.log(req.body);
 
         const convertToSQLDate = (date) => {
             const jsDate = new Date(date);
@@ -84,7 +65,6 @@ exports.createTask = (req, res) => {
                 startDateSQL,
                 deadlineSQL,
                 status,
-                userId,
                 toDoListId
             });
         });
@@ -96,12 +76,19 @@ exports.createTask = (req, res) => {
 
 exports.updateTask = (req, res) => {
     try {
-        const { uniqueId } = req.params;
-        const { taskName, status } = req.body;
-        db.query('UPDATE tasks SET taskName = ?, status = ? WHERE uniqueId = ?',
-            [taskName, status, uniqueId], (err) => {
+        const { uniqueId, title, description, priority, startDate, deadline, status } = req.body.task; // Accessing req.body.task
+        db.query('UPDATE tasks SET title = ?, description = ?, priority = ?, startDate = ?, deadline = ?, status = ? WHERE uniqueId = ?', 
+        [title, description, priority, startDate, deadline, status, uniqueId], (err, result) => {
             if (err) return res.status(500).send('Server Error');
-            res.status(200).send('Task updated successfully');
+            if (result.affectedRows === 0) return res.status(404).json({ message: 'Task not found' });
+            res.status(200).json({
+                title,
+                description,
+                priority,
+                startDate,
+                deadline,
+                status
+            });
         });
     } catch (err) {
         console.error('Error updating task:', err.message);
@@ -142,24 +129,6 @@ exports.addTaskToTodoList = (req, res) => {
         });
     } catch (err) {
         console.error('Error adding task to to-do list:', err.message);
-        res.status(500).send('Server Error');
-    }
-};
-
-exports.getTasksForTodoList = (req, res) => {
-    const { id: todoListId } = req.params;
-    const sqlQuery = 'SELECT * FROM tasks WHERE toDoListId = ?';
-
-    try {
-        db.query(sqlQuery, [todoListId], (err, tasks) => {
-            if (err) return res.status(500).send('Server Error');
-            if (tasks.length === 0) {
-                return res.status(404).json({ message: 'No tasks found for this to-do list' });
-            }
-            res.status(200).json(tasks);
-        });
-    } catch (err) {
-        console.error('Error fetching tasks for to-do list:', err.message);
         res.status(500).send('Server Error');
     }
 };

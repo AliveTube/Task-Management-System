@@ -18,7 +18,6 @@ export default function Home() {
 
     const fetchTasks = async () => {
         try {
-            console.log('Fetching tasks for uniqueId:', userId);
             const response = await axios.get(`http://localhost:3000/api/allTasks/${userId}`);
             const allTasks = response.data;
 
