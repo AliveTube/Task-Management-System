@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './TodoLists.module.css';
 import axios from 'axios';
 import TodoListMain from './TodoListMain';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import { eventEmitter } from './eventEmitter';
 import { useParams } from 'react-router-dom';
@@ -11,7 +11,9 @@ export default function TodoLists() {
   const { folderId } = useParams();
   const [todoLists, setTodoLists] = useState([]);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.TokenInUse);
+
   let userData;
   if (token.length) {
     userData = jwtDecode(token);
@@ -21,7 +23,6 @@ export default function TodoLists() {
     axios.get(`http://localhost:3000/api/todoLists/${folderId}`)
       .then(response => {
         setTodoLists(response.data);
-        console.log(response.data);
       })
       .catch(error => {
         setError('Error loading to-do lists');
@@ -29,6 +30,8 @@ export default function TodoLists() {
   }
 
   useEffect(() => {
+    // dispatch(setPath({type:"TodoListName", value:""}));
+    // dispatch(setPath({type:"TaskName", value:""}));
     getTodoListFromDB();
     eventEmitter.on('updateTodoList', getTodoListFromDB);
     return () => {

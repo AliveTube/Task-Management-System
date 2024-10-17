@@ -6,6 +6,7 @@ import axios from 'axios';
 import { eventEmitter } from './eventEmitter';
 import TodoList from './TodoList';
 import { useOutletContext } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function TodoListMain({ todoLists, setTodoLists, folderId }) {
 
@@ -13,6 +14,7 @@ export default function TodoListMain({ todoLists, setTodoLists, folderId }) {
   let [deleteCheck, setDeleteCheck] = useState(false);
   let [TodoListToBeDeleted, setTodoListToBeDeleted] = useState(NaN);
   let { updateTasks } = useOutletContext();
+  const Path = useSelector((state) => state.Path);
 
   const openCreateTodoList = () => {
     setCreatingTodoList(true);
@@ -48,7 +50,7 @@ export default function TodoListMain({ todoLists, setTodoLists, folderId }) {
   return <>
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1>TodoLists</h1>
+        <h1>{Path.FolderName}</h1>
         <div className={styles.buttonsContainer}>
           <button className={styles.button} onClick={openCreateTodoList}>Add TodoList</button>
         </div>

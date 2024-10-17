@@ -108,13 +108,17 @@
     text-decoration: none;
     font-weight: bold;
 }
-.SignOut{
+
+
+.SignOut {
     margin: 0px 1.1rem;
-    color: #4D4D4D;
+    color: #e74c3c; /* Bright red */
     font-weight: 600;
     font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .SignOut:hover {
-    cursor: pointer;
+    color: #c0392b; /* Darker red on hover */
 }
