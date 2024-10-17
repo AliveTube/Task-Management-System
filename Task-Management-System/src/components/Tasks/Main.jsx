@@ -9,10 +9,11 @@ const Main = ({ activeTasks, toggleTaskStatus }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [filterType, setFilterType] = useState('');
-  const { toDoListId } = useParams();
+  const { uniqueId } = useParams();
 
   const navigateToAddTask = () => {
-    navigate(`/home/addTask/${toDoListId}`);
+    console.log('toDoListId:', uniqueId);
+    navigate(`/home/addTask/${uniqueId}`);
   };
 
   const toggleDropdown = () => {

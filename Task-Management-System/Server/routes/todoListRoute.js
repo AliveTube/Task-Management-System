@@ -9,17 +9,18 @@ const {
 } = require('../controllers/todoListController');
 
 const {
-    getTasksForTodoList,
+    getTasksByToDoListId,
     addTaskToTodoList
 } = require('../controllers/taskController');
 
 router.get('/api/todoLists/:folderID', getAllTodoListsForFolder);
-router.post('/api/todoLists', createTodoList);
-router.delete('/api/todoLists/:todoListId', deleteTodoList);
-router.post('/api/editTodoList', editTodoList)
+router.get('/api/:uniqueId/tasks', getTasksByToDoListId);
 
-router.get('/api/:uniqueId/tasks', getTasksForTodoList);
+router.post('/api/todoLists', createTodoList);
+router.post('/api/editTodoList', editTodoList)
 router.post('/api/:uniqueId/tasks', addTaskToTodoList);
+
+router.delete('/api/todoLists/:todoListId', deleteTodoList);
 
 
 module.exports = router;

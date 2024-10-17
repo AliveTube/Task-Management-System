@@ -14,7 +14,7 @@ export default function UpdateTask(){
     useEffect(() => {
         const fetchTask = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/tasks/${uniqueId}`);
+                const response = await axios.get(`http://localhost:3000/api/taskDetails/${uniqueId}`);
                 setTask(response.data);
                 console.log(task);
             } catch (error) {
@@ -26,21 +26,15 @@ export default function UpdateTask(){
         fetchTask();
     }, [uniqueId]);
 
-
-    //TO BE CHANGED
-    const navigateToTasks = () => {
-        navigate('/home/tasks');
-    };
-
     const handleSubmit = async (task) => {
         try {
-            await axios.put(`http://localhost:3000/api/tasks/${uniqueId}`, task);
+            await axios.put(`http://localhost:3000/api/tasks/${uniqueId}`, {task:task});
             alert('Task updated successfully');
 
-            const res = await axios.get('http://localhost:3000/api/tasks');
+            const res = await axios.get(`http://localhost:3000/api/allTasks/${task.userId}`);
             updateTasks(res.data);
 
-            navigate('/home/tasks');
+            navigate(`/home/tasks/${task.toDoListId}`);
         } catch (error) {
             console.error('Error updating task:', error);
             alert('Failed to update task. Please try again.');
@@ -53,7 +47,7 @@ export default function UpdateTask(){
             <p>Loading...</p>
             ) : (
                 task && (
-                    <CreateUpdate handleSubmit={handleSubmit} Task={task} />
+                    <CreateUpdate handleSubmit={handleSubmit} Task={task} toDoListId = {task.toDoListId} />
                 )
             )}
         </>

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Aside = ({ filteredTasks }) => {
   const navigate = useNavigate();
   function navigateToTaskDetails (uniqueId) {
-    navigate(`tasks/${uniqueId}`);
+    navigate(`/home/taskDetails/${uniqueId}`);
   }
   return (
     <aside className = {styles.aside}>

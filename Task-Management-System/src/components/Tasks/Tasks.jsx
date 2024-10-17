@@ -4,9 +4,19 @@ import CompletedTasks from './CompletedTasks';
 import styles from './Tasks.module.css';
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { jwtDecode } from 'jwt-decode';
+import { useParams } from 'react-router-dom';
 
 const Tasks = () => {
   const { tasks, updateTasks } = useOutletContext();
+  const { uniqueId } = useParams();
+
+  const token = useSelector((state) => state.TokenInUse);
+  let userData;
+  if (token.length) {
+    userData = jwtDecode(token);
+  }
 
   const toggleTaskStatus = async (task) => {
     const updatedStatus = task.status === 'Completed' ? 'InProgress' : 'Completed';
@@ -14,7 +24,7 @@ const Tasks = () => {
 
     try {
       await axios.put(`http://localhost:3000/api/tasks/${task.uniqueId}`, {
-        status: updatedStatus,
+        task: updatedTask
       });
 
       const updatedTasks = tasks.map((t) =>
@@ -27,8 +37,13 @@ const Tasks = () => {
     }
   };
 
-  const activeTasks = tasks.filter((task) => task.status !== 'Completed');
-  const completedTasks = tasks.filter((task) => task.status === 'Completed');
+  const activeTasks = tasks.filter(
+    (task) => task.status !== 'Completed' && task.userId === userData?.uniqueId && task.toDoListId === parseInt(uniqueId)
+  );
+
+  const completedTasks = tasks.filter(
+    (task) => task.status === 'Completed' && task.userId === userData?.uniqueId && task.toDoListId === parseInt(uniqueId)
+  );
 
   return (
     <div className={styles.container}>
