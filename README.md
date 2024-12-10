@@ -79,7 +79,7 @@ The **Task Management System** is a full-stack web application designed to help 
    Start the backend server:
    ```bash
    cd Server
-   node index.js
+   node server.js
    ```
 
 6. **Run the Frontend Application**  
